@@ -3,6 +3,7 @@ import { ref, onMounted, watch } from 'vue'
 import SelectableListItem from '../shared/components/SelectableListItem.vue'
 import DragScroll from '../shared/components/DragScroll.vue'
 import type { Shortcut } from '../../../shared/Types/Shortcut'
+import { serializeShortcut } from '../../../shared/Types/Shortcut'
 
 
 
@@ -25,7 +26,7 @@ function onSelect(index: number) {
 // GenByAI: 回车打开选中项
 async function onOpen(index: number) {
   console.log('Opening:', shortcuts.value[index])
-  await window.linkbro.openShortcut(index)
+  await window.linkbro.openShortcut(serializeShortcut(shortcuts.value[index]))
 }
 
 watch(searchText, async (newText) => {

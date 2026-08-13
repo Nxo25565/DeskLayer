@@ -86,8 +86,7 @@ export function createLinkBroWindow(): BrowserWindow {
   })
 
   // GenByAI: 打开快捷方式
-  ipcMain.handle('open-shortcut', (_event, index: number) => {
-    const shortcut = dataManager.shortcutSettings.shortcuts[index]
+  ipcMain.handle('open-shortcut', (_event, shortcut: any) => {
     if (shortcut) {
       shell.openPath(shortcut.path)
     }

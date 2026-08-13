@@ -1,7 +1,8 @@
-import { BrowserWindow } from 'electron'
+import { BrowserWindow,app } from 'electron'
 
 export class WindowManager {
   private _windows = new Map<string, BrowserWindow>()
+  private _quitApp = false;
 
   private static instance: WindowManager
 
@@ -16,6 +17,15 @@ export class WindowManager {
   constructor() {}
 
   addWindow(id: string, window: BrowserWindow) {
+    // FixByAI: 关闭窗口时隐藏到托盘，不真正关闭
+    window.on('close', (e) => {
+      if (this._quitApp) {
+        window.close()
+        return
+      } 
+      e.preventDefault()
+      window.hide()
+    })
     this._windows.set(id, window)
   }
 
@@ -25,5 +35,10 @@ export class WindowManager {
 
   destroyWindow(id: string): void {
     id
+  }
+
+  quitApp(){
+    this._quitApp = true;
+    app.quit()
   }
 }

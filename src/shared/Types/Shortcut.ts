@@ -7,3 +7,11 @@ export interface Shortcut{
 export function isShortcutEqual(a:Shortcut, b:Shortcut){
     return a.name === b.name && a.path === b.path;
 }
+
+export function serializeShortcut(shortcut: Shortcut): any{
+    return {
+        name: shortcut.name,
+        path: shortcut.path,
+        importedFromFolder: shortcut.importedFromFolder
+    }
+}
