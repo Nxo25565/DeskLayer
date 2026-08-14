@@ -5,6 +5,6 @@ export function getVersion(): VersionInfo {
     node_ver: process.versions.node,
     electron_ver: process.versions.electron,
     vite_ver: process.versions.vite,
-    deskLayer_ver: '0.0.1' // TODO: get version from package.json
+    deskLayer_ver: 'a0.0.1' // TODO: get version from package.json
   }
 }

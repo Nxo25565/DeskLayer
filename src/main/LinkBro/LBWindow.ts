@@ -1,7 +1,7 @@
 import { join } from 'path'
 import { BrowserWindow, ipcMain, shell, globalShortcut,screen } from 'electron'
 // import type { Shortcut } from '../../shared/Types/Shortcut'
-import { SettingsDataManager } from '../utils/DataManager'
+import { SettingsManager } from '../utils/SettingsManager'
 import { Searcher } from '../utils/Searcher'
 
 
@@ -25,7 +25,7 @@ var isLinkBroShown = false
 
 // FixByAI: 直接从 DataManager 获取数据，避免异步赋值导致的数据为空
 export function createLinkBroWindow(): BrowserWindow {
-  const dataManager = SettingsDataManager.getInstance()
+  const dataManager = SettingsManager.getInstance()
 
   const windowPreference = {
     width: 500,

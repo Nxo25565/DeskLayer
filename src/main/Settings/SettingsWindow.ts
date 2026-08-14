@@ -6,6 +6,7 @@ import { dialog } from 'electron'
 import { processLnkPath } from '../utils/Path'
 import { Shortcut } from '../../shared/Types/Shortcut'
 
+
 // import { VersionInfo } from '../../shared/Types/VersionInfo'
 
 var isOpenedFileDialog = false
@@ -28,6 +29,7 @@ export function createSettingsWindow(): BrowserWindow {
     // autoHideMenuBar: true,
     icon: 'public/icon.png',
     title: 'Settings',
+    show: false,
     // titleBarStyle: 'hidden' as const
   }
 

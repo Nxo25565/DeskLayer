@@ -1,6 +1,6 @@
 import { Shortcut } from "../../shared/Types/Shortcut";
 import { match } from 'pinyin-pro'
-import { SettingsDataManager } from './DataManager'
+import { SettingsManager } from './SettingsManager'
 
 
 const searchConfig = {
@@ -76,6 +76,6 @@ export class Searcher {
     
 }
 
-const dm = SettingsDataManager.getInstance()
+const dm = SettingsManager.getInstance()
 const shortcuts = dm.shortcutSettings.shortcuts
 console.log(Searcher.getInstance().searchShortcut('a', shortcuts))

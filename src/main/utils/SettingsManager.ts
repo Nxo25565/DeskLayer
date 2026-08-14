@@ -50,9 +50,9 @@ function createDefaultShortcutSettings() : ShortcutSettingOptions{
 }
 
 
-export class SettingsDataManager {
+export class SettingsManager {
 
-    private static instance: SettingsDataManager;
+    private static instance: SettingsManager;
 
     private _saveTimer;
     private _savePromised = false;
@@ -67,10 +67,10 @@ export class SettingsDataManager {
     
 
     // GenByAI: 获取 DataManager 实例
-    public static getInstance(): SettingsDataManager {
+    public static getInstance(): SettingsManager {
         // 如果实例不存在，则创建一个新的实例
         if (!this.instance) {
-            this.instance = new SettingsDataManager()
+            this.instance = new SettingsManager()
         }
         // 返回已存在的实例或新创建的实例
         return this.instance

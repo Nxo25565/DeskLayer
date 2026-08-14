@@ -4,22 +4,30 @@ import { WindowManager } from './utils/electron/WindowManage'
 import { createAboutWindow } from './Settings/AboutWindow'
 import { createSettingsWindow } from './Settings/SettingsWindow'
 import { createLinkBroWindow } from './LinkBro/LBWindow'
-import { SettingsDataManager } from './utils/DataManager'
+import { SettingsManager } from './utils/SettingsManager'
 import createTray from './tray'
+import { Notification } from 'electron'
 // import { resolve } from 'path'
 
 const windowManager = WindowManager.getInstance()
-const dataManager = SettingsDataManager.getInstance()
+const dataManager = SettingsManager.getInstance()
 dataManager.init().catch((err) => {
     console.error('Failed to initialize data manager:', err)
 })
 
 
 
+
 app.whenReady().then(() => {
+    const notification = new Notification({
+        title: 'Hello for DeskLayer',
+        body: 'DeskLayer成功启动，设置在托盘里！'
+    })
+
     createTray()
 
-    if (false){
+
+    if (true){
         console.log("awa")
         // console.log(resolve(__dirname,'src/renderer/src/'))
         const aboutWindow = createAboutWindow()
@@ -28,14 +36,13 @@ app.whenReady().then(() => {
     if (true){
         const settingsWindow = createSettingsWindow()
         windowManager.addWindow('settings', settingsWindow)
-        settingsWindow.show()
     }
 
     const linkBroWindow = createLinkBroWindow()
     windowManager.addWindow('linkbro', linkBroWindow)
     
 
-
+    notification.show()
 
 
 })
