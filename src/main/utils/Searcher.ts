@@ -1,6 +1,6 @@
 import { Shortcut } from "../../shared/Types/Shortcut";
 import { match } from 'pinyin-pro'
-import { SettingsManager } from './SettingsManager'
+import { SettingsManager } from './Settings/SettingsManager'
 
 
 const searchConfig = {
@@ -31,7 +31,6 @@ export class Searcher {
      * GenByAI: 根据拼音搜索匹配的快捷键
      * @param searchTerm 搜索关键词（拼音）
      * @param array 快捷键数组
-     * @returns 匹配结果数组（当前返回空数组，待完善）
      *
      * 优化说明：合并 filter + map 为单次遍历，对每个 shortcut 只调用一次 match，
      * 避免原实现中 filter 和 map 各调用一次 match 造成的重复计算

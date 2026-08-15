@@ -1,0 +1,4 @@
+[
+    { "path": "styles/components/**/*", "priority": 0 },
+    { "path": "js/libs" , "priority":0 }
+]

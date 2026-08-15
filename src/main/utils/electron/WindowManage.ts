@@ -1,5 +1,11 @@
 import { BrowserWindow,app } from 'electron'
 
+
+
+
+// console.log(`ResourcesPath: ${basePath}`)
+
+
 export class WindowManager {
   private _windows = new Map<string, BrowserWindow>()
   private _quitApp = false;
@@ -33,9 +39,11 @@ export class WindowManager {
     return this._windows.get(id)
   }
 
-  destroyWindow(id: string): void {
-    id
-  }
+  // destroyWindow(id: string): void {
+  //   id
+  // }
+
+
 
   quitApp(){
     this._quitApp = true;

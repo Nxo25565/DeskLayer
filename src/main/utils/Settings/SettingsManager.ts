@@ -1,14 +1,14 @@
 import { readFile,mkdir,writeFile } from 'fs/promises'
 import { existsSync } from 'fs'
-import type { Shortcut } from '../../shared/Types/Shortcut'
-import { isShortcutEqual } from '../../shared/Types/Shortcut'
-import { ipcMain } from 'electron'
+import type { Shortcut } from '../../../shared/Types/Shortcut'
+import { isShortcutEqual } from '../../../shared/Types/Shortcut'
+import { ipcMain,app } from 'electron'
 import path from 'path'
-import { getFolders } from './Path'
+import { getFolders } from '../Path'
 
 
 
-const debug = true;
+
 
 const saveInterval = 1000
 
@@ -23,7 +23,7 @@ interface ShortcutSettingOptions {
 // out main
 // console.log('DIR: ',process.cwd())
 
-if (!debug){
+if (app.isPackaged){
 var settingFiles = {
     shortcuts: path.join(__dirname,'./settings/shortcuts.json'),
     general: path.join(__dirname,'./settings/general.json'),

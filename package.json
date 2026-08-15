@@ -19,7 +19,6 @@
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "npm run build && electron-builder --mac",
     "build:linux": "npm run build && electron-builder --linux",
-
     "searcherTest": "tsx ./src/tests/searcher.test.ts"
   },
   "dependencies": {
@@ -27,6 +26,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "electron-fix": "^1.1.7",
     "electron-updater": "^6.3.9",
+    "fast-glob": "^3.3.3",
     "pinyin-pro": "^3.28.2"
   },
   "devDependencies": {

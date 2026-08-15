@@ -1,8 +1,12 @@
 import { join } from 'path'
 import { BrowserWindow, ipcMain, shell, globalShortcut,screen } from 'electron'
 // import type { Shortcut } from '../../shared/Types/Shortcut'
-import { SettingsManager } from '../utils/SettingsManager'
+import { SettingsManager } from '../utils/Settings/SettingsManager'
 import { Searcher } from '../utils/Searcher'
+import { getDefaultInsert, InsertCustomFileOptions } from '../utils/electron/FileInsert'
+// import { WindowManager } from '../utils/electron/WindowManage'
+// import type { InsertCustomFileOptions } from '../utils/electron/WindowManage'
+
 
 
 
@@ -22,6 +26,19 @@ import { Searcher } from '../utils/Searcher'
 
 
 var isLinkBroShown = false
+
+
+// const insertFile: InsertCustomFileOptions[] = [...await getDefaultInsert(),
+//   { path: '/styles/pages/LinkBro/index.css' , priority:0 },
+// ] as InsertCustomFileOptions[]
+
+// const insertStyles: InsertCustomFileOptions[] = [
+//   {
+//     path: join('./resources/styles/pages')
+//   }
+// ]
+
+
 
 // FixByAI: 直接从 DataManager 获取数据，避免异步赋值导致的数据为空
 export function createLinkBroWindow(): BrowserWindow {
@@ -50,6 +67,7 @@ export function createLinkBroWindow(): BrowserWindow {
 
   const lbWindow = new BrowserWindow(windowPreference)
   lbWindow.loadFile(pageFile)
+
 
 
   // Sth for sys
