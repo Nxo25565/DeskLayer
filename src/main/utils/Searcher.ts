@@ -5,7 +5,7 @@ import { SettingsManager } from './Settings/SettingsManager'
 
 const searchConfig = {
     precision: 'any', //'first' | 'start' | 'every' | 'any';
-    continuous: true, //boolean;
+    continuous: false, //boolean;
     space: 'ignore', //ignore' | 'preserve';
     lastPrecision: 'any', //'first' | 'start' | 'every' | 'any';
     v: true, //boolean; // v3.25.0+
@@ -68,6 +68,7 @@ export class Searcher {
     }
 
     search(searchTerm: string, array: Shortcut[]): Shortcut[]{
+        if (searchTerm.length === 0) { return array } 
         const result = this.searchShortcut(searchTerm, array)
         return this.sortResult(result)
     }

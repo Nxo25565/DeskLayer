@@ -1,10 +1,10 @@
-import { Tray,app,Menu } from 'electron'
+import { Tray,Menu } from 'electron'
 import { join } from 'path'
 import { WindowManager } from './utils/electron/WindowManage'
 
 // GenByAI: 创建托盘图标
-const iconPath = join(app.getAppPath(), 'build/icon.png')
-
+const iconPath = join(process.cwd(), 'build/icon32.png')
+console.log(iconPath)
 
 export default function createTray() {
     const wm = WindowManager.getInstance()
