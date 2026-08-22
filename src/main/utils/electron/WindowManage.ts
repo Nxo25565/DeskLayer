@@ -1,4 +1,5 @@
 import { BrowserWindow, app } from 'electron'
+import { getWebFileList, insertWebFiles } from './FileInsert'
 
 // console.log(`ResourcesPath: ${basePath}`)
 
@@ -29,6 +30,9 @@ export class WindowManager {
       window.hide()
     })
     this._windows.set(id, window)
+    window.webContents.on('did-finish-load', () => {
+      insertWebFiles(window, getWebFileList(id))
+    })
   }
 
   getWindow(id: string): BrowserWindow | undefined {

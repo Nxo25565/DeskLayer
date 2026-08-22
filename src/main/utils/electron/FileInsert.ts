@@ -20,6 +20,7 @@ export interface InsertCustomFileOptions {
 }
 
 var defaultInserts: InsertCustomFileOptions[]
+var rendererFileList: any
 
 console.log(process.cwd())
 
@@ -93,4 +94,20 @@ export function getDefaultInsert(): InsertCustomFileOptions[] {
     defaultInserts.splice(defaultInserts.indexOf(insert), 1)
   }
   return defaultInserts
+}
+
+
+export function getWebFileList(windowName: string): InsertCustomFileOptions[] {
+  if (!rendererFileList) {
+    // 缓存
+    rendererFileList = JSON.parse(readFileSync(join(basePath, 'RendererFileList.json'), 'utf-8'))
+  }
+  return parseInsertOptions(rendererFileList[windowName])
+}
+
+function parseInsertOptions(jsonList: any[]): InsertCustomFileOptions[] {
+  return jsonList.map((item: any) => ({
+    path: item.path,
+    priority: item.priority
+  }))
 }

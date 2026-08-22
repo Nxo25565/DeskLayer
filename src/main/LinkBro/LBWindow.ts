@@ -3,8 +3,6 @@ import { BrowserWindow, ipcMain, shell, globalShortcut, screen } from 'electron'
 // import type { Shortcut } from '../../shared/Types/Shortcut'
 import { SettingsManager } from '../utils/Settings/SettingsManager'
 import { Searcher } from '../utils/Searcher'
-import { InsertCustomFileOptions } from '../utils/electron/FileInsert'
-import { insertWebFiles } from '../utils/electron/FileInsert'
 // import { WindowManager } from '../utils/electron/WindowManage'
 // import type { InsertCustomFileOptions } from '../utils/electron/WindowManage'
 
@@ -22,17 +20,6 @@ import { insertWebFiles } from '../utils/electron/FileInsert'
 // ]
 
 var isLinkBroShown = false
-
-const insertWebFileList: InsertCustomFileOptions[] = [
-  {
-    path: join('./styles/components/SelectableListItem.css'),
-    priority: 1
-  },
-  {
-    path: join('./styles/pages/LinkBro/index.css'),
-    priority: 1
-  }
-]
 
 export function createLinkBroWindow(): BrowserWindow {
   const dataManager = SettingsManager.getInstance()
@@ -79,7 +66,6 @@ export function createLinkBroWindow(): BrowserWindow {
   // FixByAI: 页面加载完成后再缩小
   lbWindow.webContents.on('did-finish-load', () => {
     lbWindow.webContents.setZoomFactor(0.85)
-    insertWebFiles(lbWindow, insertWebFileList)
   })
 
   // FixByAI: 直接从 DataManager 获取最新数据
@@ -104,6 +90,4 @@ export function createLinkBroWindow(): BrowserWindow {
 }
 
 
-export function getWebFileList(): InsertCustomFileOptions[] {
-  
-}
+
