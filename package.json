@@ -19,7 +19,8 @@
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "npm run build && electron-builder --mac",
     "build:linux": "npm run build && electron-builder --linux",
-    "searcherTest": "tsx ./src/tests/searcher.test.ts"
+    "searcherTest": "tsx ./src/tests/searcher.test.ts",
+    "insertFilePathTest": "tsx ./src/main/utils/electron/FileInsert.ts"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
@@ -41,11 +42,14 @@
     "eslint": "^9.39.1",
     "eslint-plugin-vue": "^10.6.2",
     "prettier": "^3.7.4",
-    "tsx": "^4.20.3",
+    "tsx": "^4.23.12",
     "typescript": "^5.9.3",
     "vite": "^7.2.6",
     "vue": "^3.5.25",
     "vue-eslint-parser": "^10.2.0",
     "vue-tsc": "^3.1.6"
+  },
+  "allowScripts": {
+    "fast-glob@3.3.3": true
   }
 }

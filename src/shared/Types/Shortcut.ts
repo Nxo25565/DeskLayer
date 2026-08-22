@@ -1,17 +1,17 @@
-export interface Shortcut{
-    name: string,
-    path: string,
-    importedFromFolder?: string,    // id to map it to a folder
+export interface Shortcut {
+  name: string
+  path: string
+  importedFromFolder?: string // id to map it to a folder
 }
 
-export function isShortcutEqual(a:Shortcut, b:Shortcut){
-    return a.name === b.name && a.path === b.path;
+export function isShortcutEqual(a: Shortcut, b: Shortcut) {
+  return a.name === b.name && a.path === b.path
 }
 
-export function serializeShortcut(shortcut: Shortcut): any{
-    return {
-        name: shortcut.name,
-        path: shortcut.path,
-        importedFromFolder: shortcut.importedFromFolder
-    }
+export function serializeShortcut(shortcut: Shortcut): any {
+  return {
+    name: shortcut.name,
+    path: shortcut.path,
+    importedFromFolder: shortcut.importedFromFolder
+  }
 }

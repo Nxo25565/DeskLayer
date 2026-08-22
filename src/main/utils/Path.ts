@@ -25,11 +25,11 @@ export function importFolderShortcuts(folderPath: string): Shortcut[] {
 }
 
 export function getFolders(shortcuts: Shortcut[]): string[] {
-  var result:string[] = []
+  var result: string[] = []
   shortcuts.forEach((shortcut) => {
     if (shortcut.importedFromFolder) {
       if (!result.some((folder) => folder === shortcut.importedFromFolder))
-      result.push(shortcut.importedFromFolder)
+        result.push(shortcut.importedFromFolder)
     }
   })
   return result

@@ -1,0 +1,42 @@
+/* GenByAI: 可选择列表组件（键盘导航版）样式 */
+.selectable-list-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.selectable-list-item:hover {
+  background-color: #f5f5f5;
+}
+
+.selectable-list-item.is-selected {
+  background-color: #e3f2fd;
+  border-left: 3px solid #2196f3;
+  padding-left: 5px;
+}
+
+.selectable-list-item:last-child {
+  border-bottom: none;
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.item-detail {
+  font-size: 12px;
+  color: #666;
+  word-break: break-all;
+}

@@ -5,7 +5,11 @@ import vue from '@vitejs/plugin-vue'
 console.log(resolve(__dirname, 'src/renderer/src/'))
 
 export default defineConfig({
-  main: {},
+  main: {
+    build: {
+      sourcemap: true
+    }
+  },
   preload: {
     build: {
       sourcemap: true,

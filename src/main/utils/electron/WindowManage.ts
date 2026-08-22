@@ -1,14 +1,10 @@
-import { BrowserWindow,app } from 'electron'
-
-
-
+import { BrowserWindow, app } from 'electron'
 
 // console.log(`ResourcesPath: ${basePath}`)
 
-
 export class WindowManager {
   private _windows = new Map<string, BrowserWindow>()
-  private _quitApp = false;
+  private _quitApp = false
 
   private static instance: WindowManager
 
@@ -28,7 +24,7 @@ export class WindowManager {
       if (this._quitApp) {
         window.close()
         return
-      } 
+      }
       e.preventDefault()
       window.hide()
     })
@@ -43,10 +39,8 @@ export class WindowManager {
   //   id
   // }
 
-
-
-  quitApp(){
-    this._quitApp = true;
+  quitApp() {
+    this._quitApp = true
     app.quit()
   }
 }

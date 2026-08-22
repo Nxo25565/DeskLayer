@@ -1,14 +1,12 @@
 import { join } from 'path'
-import { BrowserWindow, ipcMain, shell, globalShortcut,screen } from 'electron'
+import { BrowserWindow, ipcMain, shell, globalShortcut, screen } from 'electron'
 // import type { Shortcut } from '../../shared/Types/Shortcut'
 import { SettingsManager } from '../utils/Settings/SettingsManager'
 import { Searcher } from '../utils/Searcher'
-import { getDefaultInsert, InsertCustomFileOptions } from '../utils/electron/FileInsert'
+import { InsertCustomFileOptions } from '../utils/electron/FileInsert'
+import { insertWebFiles } from '../utils/electron/FileInsert'
 // import { WindowManager } from '../utils/electron/WindowManage'
 // import type { InsertCustomFileOptions } from '../utils/electron/WindowManage'
-
-
-
 
 // const shortcuts: Shortcut[] = [
 //   { name: 'Chrome', path: 'C:/Program Files/Google/Chrome/Application/chrome.exe' },
@@ -23,24 +21,19 @@ import { getDefaultInsert, InsertCustomFileOptions } from '../utils/electron/Fil
 //   { name: 'Notion', path: 'C:/Users/Admin/AppData/Local/Programs/Notion/Notion.exe' },
 // ]
 
-
-
 var isLinkBroShown = false
 
+const insertWebFileList: InsertCustomFileOptions[] = [
+  {
+    path: join('./styles/components/SelectableListItem.css'),
+    priority: 1
+  },
+  {
+    path: join('./styles/pages/LinkBro/index.css'),
+    priority: 1
+  }
+]
 
-// const insertFile: InsertCustomFileOptions[] = [...await getDefaultInsert(),
-//   { path: '/styles/pages/LinkBro/index.css' , priority:0 },
-// ] as InsertCustomFileOptions[]
-
-// const insertStyles: InsertCustomFileOptions[] = [
-//   {
-//     path: join('./resources/styles/pages')
-//   }
-// ]
-
-
-
-// FixByAI: 直接从 DataManager 获取数据，避免异步赋值导致的数据为空
 export function createLinkBroWindow(): BrowserWindow {
   const dataManager = SettingsManager.getInstance()
 
@@ -60,32 +53,28 @@ export function createLinkBroWindow(): BrowserWindow {
     show: false,
     resizeable: false,
     frame: false
-    // titleBarStyle: 'hidden' as const,
-    
   }
-  const pageFile = join(__dirname,'../renderer/LinkBroPage.html')
+  const pageFile = join(__dirname, '../renderer/LinkBroPage.html')
 
   const lbWindow = new BrowserWindow(windowPreference)
+  insertWebFiles(lbWindow, insertWebFileList)
   lbWindow.loadFile(pageFile)
-
-
 
   // Sth for sys
   globalShortcut.register('Alt+S', () => {
-          if (!isLinkBroShown){
-              const mousePos = screen.getCursorScreenPoint()
-              lbWindow.setPosition(mousePos.x, mousePos.y)
-              lbWindow.show()
-          } else {
-              lbWindow.hide()
-          }
-          isLinkBroShown = !isLinkBroShown
-      })
-  globalShortcut.register('Escape',()=>{
+    if (!isLinkBroShown) {
+      const mousePos = screen.getCursorScreenPoint()
+      lbWindow.setPosition(mousePos.x, mousePos.y)
+      lbWindow.show()
+    } else {
       lbWindow.hide()
-      isLinkBroShown = false
+    }
+    isLinkBroShown = !isLinkBroShown
   })
-
+  globalShortcut.register('Escape', () => {
+    lbWindow.hide()
+    isLinkBroShown = false
+  })
 
   // FixByAI: 页面加载完成后再缩小
   lbWindow.webContents.on('did-finish-load', () => {

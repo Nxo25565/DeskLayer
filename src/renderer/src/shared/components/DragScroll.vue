@@ -101,14 +101,3 @@ onUnmounted(() => {
     <slot />
   </div>
 </template>
-
-<style scoped>
-.drag-resize-container {
-  margin-top: 8px;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px;
-  cursor: ns-resize;
-}
-</style>

@@ -1,0 +1,9 @@
+/* GenByAI: 可拖拽调整高度的滚动容器样式 */
+.drag-resize-container {
+  margin-top: 8px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: ns-resize;
+}
