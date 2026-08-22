@@ -31,8 +31,9 @@ export function loadCustomJS(window: BrowserWindow, insertJS: InsertCustomFileOp
   for (const js of insertJS) {
     try {
       window.webContents.executeJavaScript(readFileSync(join(basePath, js.path), 'utf-8'))
+      console.log('load js: ' + join(basePath, js.path))
     } catch (error) {
-      console.log('An error occurred when load js: ' + js.path)
+      console.log('An error occurred when load js: ' + join(basePath, js.path))
       console.log(error)
     }
   }
@@ -42,9 +43,11 @@ export function loadCustomStyle(window: BrowserWindow, insertStyle: InsertCustom
   insertStyle = insertStyle.sort((a, b) => a.priority - b.priority)
   for (const css of insertStyle) {
     try {
-      window.webContents.executeJavaScript(readFileSync(join(basePath, css.path), 'utf-8'))
+      // FixByAI: css粘代码executejs也是神人
+      window.webContents.insertCSS(readFileSync(join(basePath, css.path), 'utf-8'))
+      console.log('load css: ' + join(basePath, css.path))
     } catch (error) {
-      console.log('An error occurred when load css: ' + css.path)
+      console.log('An error occurred when load css: ' + join(basePath, css.path))
       console.log(error)
     }
   }

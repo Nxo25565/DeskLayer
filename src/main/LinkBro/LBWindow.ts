@@ -57,8 +57,8 @@ export function createLinkBroWindow(): BrowserWindow {
   const pageFile = join(__dirname, '../renderer/LinkBroPage.html')
 
   const lbWindow = new BrowserWindow(windowPreference)
-  insertWebFiles(lbWindow, insertWebFileList)
   lbWindow.loadFile(pageFile)
+  
 
   // Sth for sys
   globalShortcut.register('Alt+S', () => {
@@ -79,6 +79,7 @@ export function createLinkBroWindow(): BrowserWindow {
   // FixByAI: 页面加载完成后再缩小
   lbWindow.webContents.on('did-finish-load', () => {
     lbWindow.webContents.setZoomFactor(0.85)
+    insertWebFiles(lbWindow, insertWebFileList)
   })
 
   // FixByAI: 直接从 DataManager 获取最新数据
@@ -100,4 +101,9 @@ export function createLinkBroWindow(): BrowserWindow {
   })
 
   return lbWindow
+}
+
+
+export function getWebFileList(): InsertCustomFileOptions[] {
+  
 }
