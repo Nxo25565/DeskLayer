@@ -48,16 +48,32 @@ loadShortcuts()
 </script>
 
 <template>
-  <h4>DESKLAYER-LINKBRO</h4>
-  <input ref="searchInput" type="text" v-model="searchText" placeholder="Search" />
-  <DragScroll :height="600" :min-height="600" :max-height="600">
-    <SelectableListItem
-      :items="shortcuts"
-      key-field="path"
-      name-field="name"
-      detail-field="path"
-      @select="onSelect"
-      @open="onOpen"
-    />
-  </DragScroll>
+  <div class="linkbro-container">
+    <div class="header">DESKLAYER a0.0.1</div>
+    
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input 
+        ref="searchInput" 
+        type="text" 
+        v-model="searchText" 
+        placeholder="Type to search" 
+        class="search-input"
+      />
+    </div>
+    
+    <DragScroll :height="500" :min-height="500" :max-height="500" class="shortcut-list-container">
+      <SelectableListItem
+        :items="shortcuts"
+        key-field="path"
+        name-field="name"
+        detail-field="path"
+        @select="onSelect"
+        @open="onOpen"
+      />
+    </DragScroll>
+  </div>
 </template>

@@ -23,16 +23,16 @@ app.whenReady().then(() => {
 
   createTray()
 
-  if (true) {
-    console.log('awa')
-    // console.log(resolve(__dirname,'src/renderer/src/'))
-    const aboutWindow = createAboutWindow()
-    windowManager.addWindow('about', aboutWindow)
-  }
-  if (true) {
-    const settingsWindow = createSettingsWindow()
-    windowManager.addWindow('settings', settingsWindow)
-  }
+
+  console.log('awa')
+  // console.log(resolve(__dirname,'src/renderer/src/'))
+  const aboutWindow = createAboutWindow()
+  windowManager.addWindow('about', aboutWindow)
+
+
+  const settingsWindow = createSettingsWindow()
+  windowManager.addWindow('settings', settingsWindow)
+  
 
   const linkBroWindow = createLinkBroWindow()
   windowManager.addWindow('linkbro', linkBroWindow)

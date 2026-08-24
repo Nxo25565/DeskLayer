@@ -51,5 +51,3 @@ console.log(searcher.search('sql', shortcuts))
 
 console.log('\n搜索 "py":')
 console.log(searcher.search('py', shortcuts))
-
-while (true) {}

@@ -92,10 +92,11 @@ onUnmounted(() => {
 
 <template>
   <!-- ExplainByAI: 容器绑定高度样式和 mousedown 拖拽起始事件 -->
+  <!-- FixByAI: 在内联样式中添加 overflow 控制，解决列表项超框问题（内联样式优先级最高，确保覆盖其他样式） -->
   <div
     ref="containerRef"
     class="drag-resize-container"
-    :style="{ height: currentHeight + 'px' }"
+    :style="{ height: currentHeight + 'px', overflowY: 'auto', overflowX: 'hidden' }"
     @mousedown="onMouseDown"
   >
     <slot />

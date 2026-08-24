@@ -28,7 +28,7 @@ export function createLinkBroWindow(): BrowserWindow {
     width: 500,
     height: 600,
 
-    transparent: false,
+    transparent: true,
     alwaysOnTop: false,
     webPreferences: {
       nodeIntegration: false,
@@ -45,6 +45,7 @@ export function createLinkBroWindow(): BrowserWindow {
 
   const lbWindow = new BrowserWindow(windowPreference)
   lbWindow.loadFile(pageFile)
+
   
 
   // Sth for sys
@@ -88,6 +89,3 @@ export function createLinkBroWindow(): BrowserWindow {
 
   return lbWindow
 }
-
-
-

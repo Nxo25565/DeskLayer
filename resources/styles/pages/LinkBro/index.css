@@ -1,0 +1,134 @@
+/* GenByAI: LinkBro Window 页面级样式 - 典型组件设计 */
+
+/* GenByAI: LinkBro Window 主容器 - 磨砂玻璃+dots图案背景 */
+.linkbro-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 600px;
+  background: 
+    radial-gradient(circle at center, rgba(193, 193, 193, 0.12) 2px, transparent 2px),
+    rgba(179, 162, 199, 0.08);
+  background-size: 24px 24px, 100% 100%;
+  background-position: 0 0, 0 0;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 28px;
+  border: 1.5px solid rgba(179, 162, 199, 0.35);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* GenByAI: 容器内部dots装饰层 - +号图案 */
+.linkbro-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 8px 8px, rgba(193, 193, 193, 0.25) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* GenByAI: 确保内容在dots层之上 */
+.linkbro-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* GenByAI: 顶部标题栏 - 右上偏移 */
+.header {
+  font-size: 13px;
+  color: #888;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  padding-bottom: 4px;
+  align-self: flex-end;
+  margin-right: 8px;
+  opacity: 0.85;
+}
+
+/* GenByAI: 搜索框包装器 - 包含图标和输入框 */
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* GenByAI: 搜索图标 */
+.search-icon {
+  position: absolute;
+  left: 16px;
+  width: 22px;
+  height: 22px;
+  color: #999;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* GenByAI: 搜索输入框 - 大圆角胶囊式样 */
+.search-input {
+  width: 100%;
+  height: 50px;
+  padding: 0 20px 0 48px;
+  border: 2px solid #f5a623;
+  border-radius: 28px;
+  background: #fafafa;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #bbb;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  background: #fff;
+  border-color: #ff9500;
+  box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.12);
+}
+
+/* GenByAI: 列表容器 - 固定高度区域+半透滚动条 */
+/* FixByAI: 移除 flex:1 和 min-height，关闭自适应，使用 DragScroll 设置的固定高度 */
+.shortcut-list-container {
+  border-radius: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* GenByAI: 自定义半透圆角滚动条 */
+.shortcut-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.shortcut-list-container::-webkit-scrollbar-track {
+  background: rgba(179, 162, 199, 0.08);
+  border-radius: 4px;
+}
+
+.shortcut-list-container::-webkit-scrollbar-thumb {
+  background: rgba(179, 162, 199, 0.35);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.shortcut-list-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(179, 162, 199, 0.5);
+}

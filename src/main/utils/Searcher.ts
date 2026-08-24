@@ -48,7 +48,6 @@ export class Searcher {
         const matchLength = matchResult?.length ?? 0
         // priority = 匹配命中的字数 / 名称总长度，比值越大匹配度越高
         const p = matchLength > 0 ? matchLength / s.name.length : 0
-        // console.log(`match=${matchLength} / ${s.name}=${s.name.length} = ${p}`);
         return {
           shortcut: s,
           priority: p,
@@ -60,7 +59,6 @@ export class Searcher {
       // 移除内部使用的临时字段
       .map(({ shortcut, priority }) => ({ shortcut, priority }))
 
-    // console.log(result);
     return result
   }
 
