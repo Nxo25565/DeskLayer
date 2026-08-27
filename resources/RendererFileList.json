@@ -1,6 +1,10 @@
 {
     "linkbro": [
         {
+            "path": "./js/dotGenerate.js",
+            "priority": 0.5
+        },
+        {
             "path": "./styles/components/SelectableListItem.css",
             "priority": 1
         },
@@ -11,7 +15,11 @@
     ],
     "settings": [
         {
-            "path": "./styles/components/SelectableListItem.css",
+            "path": "./styles/components/ListItem.css",
+            "priority": 1
+        },
+        {
+            "path": "./styles/components/DragScroll.css",
             "priority": 1
         },
         {

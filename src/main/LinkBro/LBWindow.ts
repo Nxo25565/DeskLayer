@@ -39,7 +39,7 @@ export function createLinkBroWindow(): BrowserWindow {
     title: 'LinkBro',
     show: false,
     resizeable: false,
-    frame: false
+    frame: false,
   }
   const pageFile = join(__dirname, '../renderer/LinkBroPage.html')
 

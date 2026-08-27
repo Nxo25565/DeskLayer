@@ -7,25 +7,11 @@ import { processLnkPath } from '../utils/Path'
 import { Shortcut } from '../../shared/Types/Shortcut'
 
 // import { VersionInfo } from '../../shared/Types/VersionInfo'
-import { InsertCustomFileOptions } from '../utils/electron/FileInsert'
-import { insertWebFiles } from '../utils/electron/FileInsert'
+
 
 var isOpenedFileDialog = false
 
-const insertWebFileList: InsertCustomFileOptions[] = [
-  {
-    path: join('./styles/components/DragScroll.css'),
-    priority: 1
-  },
-  {
-    path: join('./styles/components/ListItem.css'),
-    priority: 1
-  },
-  {
-    path: join('./styles/pages/Settings/index.css'),
-    priority: 1
-  }
-]
+
 
 export function createSettingsWindow(): BrowserWindow {
   const windowPreference = {
@@ -50,7 +36,6 @@ export function createSettingsWindow(): BrowserWindow {
   const pageFile = join(__dirname, '../renderer/SettingsPage.html')
 
   const aboutWindow = new BrowserWindow(windowPreference)
-  insertWebFiles(aboutWindow, insertWebFileList)
   aboutWindow.loadFile(pageFile)
 
   // Handles

@@ -1,55 +1,68 @@
 /* GenByAI: SelectableListItem 组件样式 - 典型组件设计 */
 
 /* GenByAI: 列表容器 */
+/* 实现原理：使用flex纵向排列列表项，gap控制间距 */
 .selectable-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 4px 0;
+  gap: 10px;
+  padding: 6px 0;
 }
 
-/* GenByAI: 单个列表项 - 浅紫边框+半透明填充 */
+/* GenByAI: 单个列表项 - 浅紫边框+半透明填充+文字阴影 */
+/* 实现原理：使用border-radius:50px创建胶囊形状，RGB(179,162,199)淡紫色边框 */
+/* 半透明白色背景+柔和阴影，营造玻璃质感 */
+/* FixByAI: 添加text-shadow给所有子元素统一添加文字阴影，增强可读性 */
 .selectable-list-item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px 20px;
-  background: rgba(248, 249, 250, 0.65);
-  border: 10px solid rgba(179, 162, 199, 0.3);
-  border-radius: 28px;
+  gap: 12px;
+  padding: 11px 18px;
+  background: rgba(250, 250, 252, 0.4);
+  border: 2.5px solid rgb(179, 162, 199);
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.08),
-    0 1px 3px rgba(0, 0, 0, 0.06);
+    0 1px 2px rgba(0, 0, 0, 0.04);
+  margin-left: 8px;
+  margin-right: 8px;
+  
+  /* FixByAI: 轻微文字阴影，提升在半透明背景上的可读性 */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 /* GenByAI: 悬停效果 */
+/* 实现原理：hover时略微提亮背景并右移2px，增强交互反馈 */
 .selectable-list-item:hover {
-  background: rgba(240, 242, 245, 0.75);
-  border-color: rgba(179, 162, 199, 0.45);
+  background: rgba(245, 247, 250, 0.65);
+  border-color: rgba(179, 162, 199, 0.85);
   transform: translateX(2px);
   box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.12),
-    0 2px 4px rgba(0, 0, 0, 0.08);
+    0 3px 10px rgba(0, 0, 0, 0.10),
+    0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
-/* GenByAI: 选中状态 - 浅蓝填充+蓝边框高亮 */
+/* GenByAI: 选中状态 - 浅灰填充(RGB:193,193,193)+高亮 */
+/* 实现原理：选中时背景变为浅灰蓝色rgba(193,193,193,0.35)，符合设计图Shortcut Option(Chosen) */
+/* 保持紫色边框但略微加深，阴影增强以突出选中项 */
 .selectable-list-item.is-selected {
-  background: rgba(214, 234, 248, 0.65);
-  border-color: rgba(133, 193, 233, 0.6);
+  background: rgba(245, 247, 250, 0.5);
+  border-color: rgba(153, 178, 216, 0.664);
   box-shadow:
-    0 4px 16px rgba(133, 193, 233, 0.35),
-    0 2px 6px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 4px 14px rgba(179, 162, 199, 0.25),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 /* GenByAI: 左侧图标容器 */
+/* 实现原理：圆形容器，深色背景(#2c3e50)配合白色原子图标，未来版本可替换为实际应用图标 */
 .item-icon {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
   background: #2c3e50;
   border-radius: 50%;
   display: flex;
@@ -59,48 +72,54 @@
 }
 
 /* GenByAI: 原子图标样式 */
+/* 实现原理：使用SVG绘制的原子结构图标，白色填充，28px尺寸适配图标容器 */
 .atom-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   color: #ffffff;
 }
 
 /* GenByAI: 右侧文本信息区 */
+/* 实现原理：flex:1占据剩余空间，纵向排列名称和路径，min-width:0确保文字截断正常工作 */
 .item-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   min-width: 0;
 }
 
 /* GenByAI: 快捷方式名称 */
+/* 实现原理：15px字号+600字重，深色文字，单行溢出省略号 */
 .item-name {
   font-size: 15px;
   font-weight: 600;
   color: #2c3e50;
-  line-height: 1.3;
-  overflow: hidden;
+  line-height: 1.35;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6); /* FixByAI: 添加轻微文字阴影，提升可读性 */
 }
 
 /* GenByAI: 快捷方式路径/详情 */
+/* 实现原理：12px小字号+浅灰色，辅助信息不抢焦点，同样支持溢出省略 */
 .item-detail {
   font-size: 12px;
-  color: #7f8c8d;
-  line-height: 1.3;
+  color: #8898aa;
+  line-height: 1.35;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* GenByAI: 选中状态下的文字颜色调整 - 蓝色调 */
+/* GenByAI: 选中状态下的文字颜色调整 - 保持深色调 */
+/* 实现原理：选中时略微加深文字颜色，增强对比度但不改变色相 */
 .is-selected .item-name {
-  color: #1a5276;
-  font-weight: 700;
+  color: #1a252f;
+  font-weight: 650;
 }
 
 .is-selected .item-detail {
-  color: #5499c7;
+  color: #6b7a8c;
 }

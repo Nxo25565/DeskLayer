@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "path": "js/libs/**/*.js",
+        "priority": 0
+    },
+    {
+        "path": "js/animejsTest.js",
+        "priority": 0.5
+    }
+]

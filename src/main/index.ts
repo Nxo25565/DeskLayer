@@ -11,6 +11,8 @@ import { Notification } from 'electron'
 
 const windowManager = WindowManager.getInstance()
 const dataManager = SettingsManager.getInstance()
+
+
 dataManager.init().catch((err) => {
   console.error('Failed to initialize data manager:', err)
 })
@@ -38,9 +40,4 @@ app.whenReady().then(() => {
   windowManager.addWindow('linkbro', linkBroWindow)
 
   notification.show()
-})
-
-// FixByAI: 关闭窗口时隐藏到托盘，不退出应用
-app.on('window-all-closed', () => {
-  // 不退出，托盘保持运行
 })

@@ -1,9 +1,12 @@
 /* GenByAI: 可拖拽调整高度的滚动容器样式 */
+/* 实现原理：移除边框和背景，使列表区域融入整体毛玻璃背景 */
+/* 仅保留圆角和内边距，确保内容不贴边 */
 .drag-resize-container {
-  margin-top: 8px;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-right: 16px;
   overflow-y: auto;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px;
+  border-radius: 14px;
+  padding: 6px;
   cursor: ns-resize;
 }

@@ -49,22 +49,25 @@ loadShortcuts()
 
 <template>
   <div class="linkbro-container">
-    <div class="header">DESKLAYER a0.0.1</div>
-    
+    <!-- FixByAI: +号网格背景容器（由注入脚本dotGenerate.js自动填充） -->
+    <div class="plus-grid-background"></div>
+
+    <h1 class="header">DESKLAYER a0.0.1 awa</h1>
+
     <div class="search-wrapper">
       <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="11" cy="11" r="8"></circle>
         <path d="m21 21-4.35-4.35"></path>
       </svg>
-      <input 
-        ref="searchInput" 
-        type="text" 
-        v-model="searchText" 
-        placeholder="Type to search" 
+      <input
+        ref="searchInput"
+        type="text"
+        v-model="searchText"
+        placeholder="Type to search"
         class="search-input"
       />
     </div>
-    
+
     <DragScroll :height="500" :min-height="500" :max-height="500" class="shortcut-list-container">
       <SelectableListItem
         :items="shortcuts"

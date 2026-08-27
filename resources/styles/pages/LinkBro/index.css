@@ -1,64 +1,70 @@
 /* GenByAI: LinkBro Window 页面级样式 - 典型组件设计 */
 
 /* GenByAI: LinkBro Window 主容器 - 磨砂玻璃+dots图案背景 */
+/* 实现原理：使用backdrop-filter创建毛玻璃效果，通过伪元素::before叠加+号网格图案 */
+/* 颜色方案：外框RGB(179,162,199)淡紫色，dots使用RGB(193,193,193)浅灰色 */
 .linkbro-container {
   width: 100%;
   max-width: 420px;
   min-height: 600px;
-  background: 
-    radial-gradient(circle at center, rgba(193, 193, 193, 0.12) 2px, transparent 2px),
-    rgba(179, 162, 199, 0.08);
-  background-size: 24px 24px, 100% 100%;
-  background-position: 0 0, 0 0;
+  background: rgba(253, 253, 253, 0.25);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 28px;
-  border: 1.5px solid rgba(179, 162, 199, 0.35);
+  border: 1.5px solid rgba(179, 162, 199, 0.45);
   box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.18),
-    0 4px 12px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   position: relative;
   overflow: hidden;
 }
 
-/* GenByAI: 容器内部dots装饰层 - +号图案 */
-.linkbro-container::before {
-  content: '';
+/* GenByAI: 容器内部+号网格背景层 - 真实DOM实现 */
+
+/*
+ * FixByAI: [已废弃] CSS伪元素方案记录
+ * - 原方案：radial-gradient圆点 → 不是+号
+ * - 尝试1：content:'+'字符 → 排版不稳定
+ * - 尝试2：gradient贯穿线 → 连成一片
+ * 结论：改用真实DOM元素动态生成
+*/
+
+/* GenByAI: +号网格容器 - 绝对定位覆盖整个容器 */
+/* 实现原理：作为背景层放置在容器底部，z-index低于内容层 */
+/* FixByAI: 必须设置top/left/right/bottom四边为0确保全屏覆盖 */
+.plus-grid-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:
-    radial-gradient(circle at 8px 8px, rgba(193, 193, 193, 0.25) 1.5px, transparent 1.5px);
-  background-size: 32px 32px;
-  opacity: 0.6;
+  overflow: hidden;
   pointer-events: none;
   z-index: 0;
 }
 
-/* GenByAI: 确保内容在dots层之上 */
-.linkbro-container > * {
+/* GenByAI: 确保内容在+号网格层之上（排除背景层本身） */
+.linkbro-container > *:not(.plus-grid-background) {
   position: relative;
   z-index: 1;
 }
 
 /* GenByAI: 顶部标题栏 - 右上偏移 */
+/* 实现原理：使用align-self将标题推到右侧，降低透明度使其不抢焦点 */
 .header {
-  font-size: 13px;
-  color: #888;
+  font-size: 12px;
+  color: #333;
   font-weight: 500;
-  letter-spacing: 0.8px;
-  padding-bottom: 4px;
+  letter-spacing: 1px;
+  padding-bottom: 2px;
   align-self: flex-end;
-  margin-right: 8px;
-  opacity: 0.85;
+  margin-right: 4px;
+  opacity: 0.7;
 }
 
 /* GenByAI: 搜索框包装器 - 包含图标和输入框 */
@@ -69,66 +75,91 @@
 }
 
 /* GenByAI: 搜索图标 */
+/* 实现原理：绝对定位在搜索框内部左侧，使用SVG绘制圆形边框+放大镜图标 */
 .search-icon {
   position: absolute;
-  left: 16px;
-  width: 22px;
-  height: 22px;
+  left: 18px;
+  width: 24px;
+  height: 24px;
   color: #999;
   pointer-events: none;
   z-index: 1;
 }
 
 /* GenByAI: 搜索输入框 - 大圆角胶囊式样 */
+/* 实现原理：使用较大的border-radius创建胶囊形状，橙色边框(#f5a623)符合设计图 */
+/* 内部padding-left留出图标空间，placeholder使用浅灰色 */
 .search-input {
   width: 100%;
-  height: 50px;
-  padding: 0 20px 0 48px;
+  height: 48px;
+  padding: 0 20px 0 50px;
   border: 2px solid #f5a623;
-  border-radius: 28px;
-  background: #fafafa;
-  font-size: 16px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
   color: #333;
   outline: none;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   box-sizing: border-box;
 }
 
 .search-input::placeholder {
-  color: #bbb;
-  font-size: 15px;
+  color: #aaa;
+  font-size: 14px;
+  font-weight: 300;
 }
 
+/* GenByAI: 聚焦状态增强边框可见度 */
 .search-input:focus {
-  background: #fff;
-  border-color: #ff9500;
-  box-shadow: 0 0 0 4px rgba(245, 166, 35, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: #e8941f;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15);
 }
 
-/* GenByAI: 列表容器 - 固定高度区域+半透滚动条 */
-/* FixByAI: 移除 flex:1 和 min-height，关闭自适应，使用 DragScroll 设置的固定高度 */
+/* GenByAI: 列表容器 - 固定高度区域+半透滚动条+边界渐变模糊 */
+/* 实现原理：使用overflow-y:auto启用垂直滚动，配合自定义webkit-scrollbar样式 */
+/* 滚动条设计：半透明圆角，轨道使用淡紫色，滑块使用半透明灰色 */
+/* 边界渐变：使用-webkit-mask-image创建顶部/底部45px过渡区，避免元素截断突兀 */
 .shortcut-list-container {
   border-radius: 16px;
   overflow-y: auto;
   overflow-x: hidden;
+  
+  /* FixByAI: 添加边界渐变遮罩，顶部和底部各45px透明度过渡 */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
 /* GenByAI: 自定义半透圆角滚动条 */
+/* 实现原理：宽度8px保持纤细，轨道背景RGB(179,162,199)与外框呼应 */
+/* 滑块使用半透灰色，hover时略微加深，营造玻璃质感 */
 .shortcut-list-container::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 .shortcut-list-container::-webkit-scrollbar-track {
-  background: rgba(179, 162, 199, 0.08);
+  background: rgba(179, 162, 199, 0.25);
   border-radius: 4px;
 }
 
 .shortcut-list-container::-webkit-scrollbar-thumb {
-  background: rgba(179, 162, 199, 0.35);
+  background: rgba(160, 160, 160, 0.45);
   border-radius: 4px;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .shortcut-list-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(179, 162, 199, 0.5);
+  background: rgba(180, 180, 180, 0.65);
 }
