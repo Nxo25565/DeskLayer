@@ -11,6 +11,10 @@
         {
             "path": "./styles/pages/LinkBro/index.css",
             "priority": 1
+        },
+        {
+            "path": "./js/lbAnimations.js",
+            "priority": 1.1
         }
     ],
     "settings": [

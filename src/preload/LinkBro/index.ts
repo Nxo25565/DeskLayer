@@ -8,5 +8,8 @@ contextBridge.exposeInMainWorld('linkbro', {
   getZoomFactor: (): Promise<number> => ipcRenderer.invoke('get-zoom-factor'),
   // FixByAI: 暴露搜索方法给渲染进程
   searchShortcuts: (searchTerm: string): Promise<Shortcut[]> =>
-    ipcRenderer.invoke('search-shortcuts', searchTerm)
+    ipcRenderer.invoke('search-shortcuts', searchTerm),
+
+  onPlayShowAnimation: (callback: () => void) => ipcRenderer.on('animation: lbwindow-show', callback),
+  onPlayHideAnimation: (callback: () => void) => ipcRenderer.on('animation: lbwindow-hide', callback),
 })

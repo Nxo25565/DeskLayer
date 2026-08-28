@@ -20,13 +20,14 @@ import { Searcher } from '../utils/Searcher'
 // ]
 
 var isLinkBroShown = false
+const sizeFix = 0.2
 
 export function createLinkBroWindow(): BrowserWindow {
   const dataManager = SettingsManager.getInstance()
 
   const windowPreference = {
-    width: 500,
-    height: 600,
+    width: 500 * (1+sizeFix),
+    height: 600 * (1+sizeFix),
 
     transparent: true,
     alwaysOnTop: false,
@@ -53,6 +54,9 @@ export function createLinkBroWindow(): BrowserWindow {
     if (!isLinkBroShown) {
       const mousePos = screen.getCursorScreenPoint()
       lbWindow.setPosition(mousePos.x, mousePos.y)
+      // 提前通知动画开始
+      lbWindow.webContents.send('animation: lbwindow-show')
+
       lbWindow.show()
     } else {
       lbWindow.hide()
@@ -60,8 +64,13 @@ export function createLinkBroWindow(): BrowserWindow {
     isLinkBroShown = !isLinkBroShown
   })
   globalShortcut.register('Escape', () => {
-    lbWindow.hide()
-    isLinkBroShown = false
+    lbWindow.webContents.send('animation: lbwindow-hide')
+    const hideTimer = setInterval(() => {
+      lbWindow.hide()
+      isLinkBroShown = false
+      clearInterval(hideTimer)
+    }, 800)
+    
   })
 
   // FixByAI: 页面加载完成后再缩小

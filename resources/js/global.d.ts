@@ -4,4 +4,14 @@ declare var anime: typeof import('./libs/animejs-4.5.0/anime.umd.js')
 
 declare interface Window {
   anime: typeof import('./libs/animejs-4.5.0/anime.umd.js')
+  linkbro: {
+      // getShortcuts(): Promise<Shortcut[]>
+      openShortcut(shortcut: any): Promise<void>
+      // FixByAI: 搜索方法类型声明
+      // searchShortcuts(searchTerm: string): Promise<Shortcut[]>,
+      onPlayShowAnimation(callback: () => void): void,
+      onHideAnimation(callback: () => void): void,
+    }
 }
+
+

@@ -30,14 +30,12 @@
   margin-left: 8px;
   margin-right: 8px;
   
-  /* FixByAI: 轻微文字阴影，提升在半透明背景上的可读性 */
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 /* GenByAI: 悬停效果 */
 /* 实现原理：hover时略微提亮背景并右移2px，增强交互反馈 */
 .selectable-list-item:hover {
-  background: rgba(245, 247, 250, 0.65);
+  background: rgba(245, 247, 250, 0.842);
   border-color: rgba(179, 162, 199, 0.85);
   transform: translateX(2px);
   box-shadow:
@@ -49,7 +47,7 @@
 /* 实现原理：选中时背景变为浅灰蓝色rgba(193,193,193,0.35)，符合设计图Shortcut Option(Chosen) */
 /* 保持紫色边框但略微加深，阴影增强以突出选中项 */
 .selectable-list-item.is-selected {
-  background: rgba(245, 247, 250, 0.5);
+  background: rgba(245, 247, 250, 0.842);
   border-color: rgba(153, 178, 216, 0.664);
   box-shadow:
     0 4px 14px rgba(179, 162, 199, 0.25),
@@ -100,6 +98,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.6); /* FixByAI: 添加轻微文字阴影，提升可读性 */
+  overflow: hidden;
 }
 
 /* GenByAI: 快捷方式路径/详情 */
@@ -111,6 +110,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* FixByAI: 轻微文字阴影，提升在半透明背景上的可读性 */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);  /* 太好了是凹感 */
 }
 
 /* GenByAI: 选中状态下的文字颜色调整 - 保持深色调 */
