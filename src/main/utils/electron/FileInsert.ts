@@ -43,7 +43,7 @@ export function loadCustomJS(windowName: string, insertJS: InsertCustomFileOptio
       // FixByAI: js粘代码executejs也是神人
       // FixByAI: 这里的windowName是window的id，而不是window对象
       wm.getWindow(windowName)?.webContents?.executeJavaScript(readFileSync(join(basePath, js.path), 'utf-8'))
-      console.log('load js: ' + join(basePath, js.path) + 'on window: ' + windowName)
+      console.log('load js: ' + join(basePath, js.path) + ' on window: ' + windowName)
     } catch (error) {
       console.log('An error occurred when load js: ' + join(basePath, js.path))
       console.log(error)
@@ -105,7 +105,8 @@ export function getDefaultInsert(): InsertCustomFileOptions[] {
     }
     defaultInserts.splice(defaultInserts.indexOf(insert), 1)
   }
-  return defaultInserts
+  console.log('filtered default: '+[...defaultInserts.filter(f => f.priority != -1)].toString())
+  return defaultInserts.filter(f => f.priority != -1)
 }
 
 
@@ -114,7 +115,8 @@ export function getWebFileList(windowName: string): InsertCustomFileOptions[] {
     // 缓存
     rendererFileList = JSON.parse(readFileSync(join(basePath, 'RendererFileList.json'), 'utf-8'))
   }
-  return parseInsertOptions(rendererFileList[windowName])
+  console.log('filtered: '+parseInsertOptions(rendererFileList[windowName]).filter(f => f.priority == -1))
+  return parseInsertOptions(rendererFileList[windowName]).filter(f => f.priority != -1)
 }
 
 function parseInsertOptions(jsonList: any[]): InsertCustomFileOptions[] {

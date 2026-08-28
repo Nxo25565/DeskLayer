@@ -1,10 +1,17 @@
 
 
-const timer = window.anime.animate({
-  targets: '.plus-symbol',
-  translateX: [-100, 100],
-  duration: 1000,
-  loop: true
-})
-console.log('hello from anime.js')
-console.log(timer)
+function loadAnimeJS() {
+  const animejs = window.anime
+  console.log('hello from anime.js')
+  console.log(animejs.animate)
+  // animejs.animate(
+  //   '.linkbro-container',
+  //   {
+  //   translateX: 250,
+  //   duration: 800,
+  //   easying: 'easeInOutQuad',
+  //   loop: true
+  // })
+}
+
+loadAnimeJS()
