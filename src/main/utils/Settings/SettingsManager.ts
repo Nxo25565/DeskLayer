@@ -16,10 +16,12 @@ interface ShortcutSettingOptions {
 // out main
 // console.log('DIR: ',process.cwd())
 
+
+var baseSettingsPath = path.join(process.cwd(), './settings/')
 if (app.isPackaged) {
   var settingFiles = {
-    shortcuts: path.join(__dirname, './settings/shortcuts.json'),
-    general: path.join(__dirname, './settings/general.json')
+    shortcuts: path.join(baseSettingsPath, './shortcuts.json'),
+    general: path.join(baseSettingsPath, './general.json')
   }
 } else {
   var settingFiles = {
@@ -27,8 +29,6 @@ if (app.isPackaged) {
     general: path.join(process.cwd(), 'debug_datas', './settings/general.json')
   }
 }
-
-var baseSettingsPath = path.join(__dirname, './settings/')
 
 function createDefaultGeneralSettings(): GeneralSettingOptions {
   return {}
@@ -265,8 +265,8 @@ export class SettingsManager {
   }
 
   async init() {
-    // this._generalSettings = createDefaultGeneralSettings()
-    // this._shortcutSettings = createDefaultShortcutSettings()
+    this._generalSettings = createDefaultGeneralSettings()
+    this._shortcutSettings = createDefaultShortcutSettings()
     this._shortcutSettings.folders = getFolders(this._shortcutSettings.shortcuts)
     // this._uuid = crypto.randomUUID()
 
