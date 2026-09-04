@@ -1,0 +1,110 @@
+{
+  "shortcuts": [
+    {
+      "name": "Wordpad",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Wordpad.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Windows Media Player",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Windows Media Player.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Windows Fax and Scan",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Windows Fax and Scan.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Steps Recorder",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Steps Recorder.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Snipping Tool",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Snipping Tool.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Remote Desktop Connection",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Remote Desktop Connection.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Quick Assist",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Quick Assist.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Paint",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Paint.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Notepad",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Notepad.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "Math Input Panel",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories\\Math Input Panel.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
+    },
+    {
+      "name": "哔哩哔哩",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\哔哩哔哩.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Microsoft Edge",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft Edge.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Immersive Control Panel",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Immersive Control Panel.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe Photoshop CS2",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Photoshop CS2.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe LiveCycle Designer 8.0",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe LiveCycle Designer 8.0.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe ImageReady CS2",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe ImageReady CS2.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe Help Center",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Help Center.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe Bridge",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Bridge.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Adobe Acrobat 8 Professional",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Adobe Acrobat 8 Professional.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Acrobat Reader",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Acrobat Reader.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    },
+    {
+      "name": "Acrobat Distiller 8",
+      "path": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Acrobat Distiller 8.lnk",
+      "importedFromFolder": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+    }
+  ],
+  "folders": []
+}

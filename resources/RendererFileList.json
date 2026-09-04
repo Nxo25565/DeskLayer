@@ -1,0 +1,40 @@
+{
+    "linkbro": [
+        {
+            "path": "./js/dotGenerate.js",
+            "priority": 0.5
+        },
+        {
+            "path": "./styles/components/SelectableListItem.css",
+            "priority": 1
+        },
+        {
+            "path": "./styles/pages/LinkBro/index.css",
+            "priority": 1
+        },
+        {
+            "path": "./js/lbAnimations.js",
+            "priority": 1.1
+        }
+    ],
+    "settings": [
+        {
+            "path": "./styles/components/ListItem.css",
+            "priority": 1
+        },
+        {
+            "path": "./styles/components/DragScroll.css",
+            "priority": 1
+        },
+        {
+            "path": "./styles/pages/Settings/index.css",
+            "priority": 1
+        }
+    ],
+    "about": [
+        {
+            "path": "./styles/pages/About/index.css",
+            "priority": 1
+        }
+    ]
+}

@@ -1,10 +1,10 @@
 import { join } from 'path'
-import { BrowserWindow, ipcMain, shell, globalShortcut,screen } from 'electron'
+import { BrowserWindow, ipcMain, shell, globalShortcut, screen } from 'electron'
 // import type { Shortcut } from '../../shared/Types/Shortcut'
-import { SettingsManager } from '../utils/SettingsManager'
+import { SettingsManager } from '../utils/Settings/SettingsManager'
 import { Searcher } from '../utils/Searcher'
-
-
+// import { WindowManager } from '../utils/electron/WindowManage'
+// import type { InsertCustomFileOptions } from '../utils/electron/WindowManage'
 
 // const shortcuts: Shortcut[] = [
 //   { name: 'Chrome', path: 'C:/Program Files/Google/Chrome/Application/chrome.exe' },
@@ -19,19 +19,17 @@ import { Searcher } from '../utils/Searcher'
 //   { name: 'Notion', path: 'C:/Users/Admin/AppData/Local/Programs/Notion/Notion.exe' },
 // ]
 
-
-
 var isLinkBroShown = false
+const sizeFix = 0.2
 
-// FixByAI: 直接从 DataManager 获取数据，避免异步赋值导致的数据为空
 export function createLinkBroWindow(): BrowserWindow {
   const dataManager = SettingsManager.getInstance()
 
   const windowPreference = {
-    width: 500,
-    height: 600,
+    width: 500 * (1+sizeFix),
+    height: 600 * (1+sizeFix),
 
-    transparent: false,
+    transparent: true,
     alwaysOnTop: false,
     webPreferences: {
       nodeIntegration: false,
@@ -42,32 +40,38 @@ export function createLinkBroWindow(): BrowserWindow {
     title: 'LinkBro',
     show: false,
     resizeable: false,
-    frame: false
-    // titleBarStyle: 'hidden' as const,
-    
+    frame: false,
   }
-  const pageFile = join(__dirname,'../renderer/LinkBroPage.html')
+  const pageFile = join(__dirname, '../renderer/LinkBroPage.html')
 
   const lbWindow = new BrowserWindow(windowPreference)
   lbWindow.loadFile(pageFile)
 
+  
 
   // Sth for sys
   globalShortcut.register('Alt+S', () => {
-          if (!isLinkBroShown){
-              const mousePos = screen.getCursorScreenPoint()
-              lbWindow.setPosition(mousePos.x, mousePos.y)
-              lbWindow.show()
-          } else {
-              lbWindow.hide()
-          }
-          isLinkBroShown = !isLinkBroShown
-      })
-  globalShortcut.register('Escape',()=>{
+    if (!isLinkBroShown) {
+      const mousePos = screen.getCursorScreenPoint()
+      lbWindow.setPosition(mousePos.x, mousePos.y)
+      // 提前通知动画开始
+      lbWindow.webContents.send('animation: lbwindow-show')
+
+      lbWindow.show()
+    } else {
+      lbWindow.hide()
+    }
+    isLinkBroShown = !isLinkBroShown
+  })
+  globalShortcut.register('Escape', () => {
+    lbWindow.webContents.send('animation: lbwindow-hide')
+    const hideTimer = setInterval(() => {
       lbWindow.hide()
       isLinkBroShown = false
+      clearInterval(hideTimer)
+    }, 800)
+    
   })
-
 
   // FixByAI: 页面加载完成后再缩小
   lbWindow.webContents.on('did-finish-load', () => {
