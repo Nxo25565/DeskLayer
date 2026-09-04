@@ -1,4 +1,4 @@
-# DeskLayer - Better?(OOM) shortcut manager - 内存泄漏的肥大快捷方式管理器
+# DeskLayer - Better? shortcut manager
 基于electron的快捷方式管理器，可以快捷（或者以文件夹形式）添加、删除、并快速打开常用快捷方式。
 
 ## 功能
@@ -41,8 +41,6 @@ $ npm run build:linux
 
 ### Custom theme 自定义主题
 见[resources/README.md](./resources/README.md)
-
-*Most dev by AI.Electron是刚学的*
 
 *The taskbar is flooded with useless results and freaking ads.Also to sloooooooow*
 
