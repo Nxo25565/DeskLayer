@@ -54,3 +54,11 @@ coverage/
 
 # Trae
 .trae/
+
+# Others
+build.py
+Vue学习笔记.md
+.hintrc
+.build_cache.json
+temp/**/*
+build/**/*
