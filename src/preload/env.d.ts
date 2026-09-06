@@ -1,5 +1,5 @@
 import { VersionInfo } from '../shared/Types/VersionInfo'
-import { Shortcut } from '../shared/Types/Shortcut'
+import { Shortcut } from '../shared/Types/Settings'
 
 declare global {
     interface Window {

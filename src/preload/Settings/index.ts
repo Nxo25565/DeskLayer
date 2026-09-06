@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import type { VersionInfo } from '../../shared/Types/VersionInfo'
-import type { Shortcut } from '../../shared/Types/Shortcut'
+import type { Shortcut } from '../../shared/Types/Settings'
 
 contextBridge.exposeInMainWorld('about', {
     getVersion: (): Promise<VersionInfo> => ipcRenderer.invoke('about:get-version'),

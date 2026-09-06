@@ -1,6 +1,6 @@
 // path process of lnk
 import { parse, join, extname } from 'path'
-import { Shortcut } from '../../shared/Types/Shortcut'
+import { Shortcut } from '../../shared/Types/Settings'
 import { readdirSync } from 'fs'
 
 export function processLnkPath(path: string, importedFromFolder?: string): Shortcut {
