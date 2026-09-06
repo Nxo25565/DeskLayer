@@ -1,38 +1,50 @@
 import { readFile, mkdir, writeFile } from 'fs/promises'
 import { existsSync } from 'fs'
-import type { Shortcut,GeneralSettingOption,ShortcutSettingOptions } from '../../../shared/Types/Settings'
-import { createDefaultShortcutSettings,isShortcutEqual } from '../../../shared/Types/Settings'
-import { ipcMain, app } from 'electron'
+import type { Shortcut } from '../../../shared/Types/Shortcut'
+import { isShortcutEqual } from '../../../shared/Types/Shortcut'
+import { ipcMain,app } from 'electron'
 import path from 'path'
 import { getFolders } from '../Path'
 
 const saveInterval = 1000
 
+
+interface GeneralSettingOptions {
+    
+}
+interface ShortcutSettingOptions {
+    shortcuts: Shortcut[],
+    folders: string[] // cached after loaded
+}
 // out main
 // console.log('DIR: ',process.cwd())
 
-/*
-sth should be cleared
-
-GeneralSettingOption是单个设置选项，包含名字，类型
-that's all?
-
-把s去掉
-*/
-
-
-var baseSettingsPath = path.join(process.cwd(), './settings/')
-if (app.isPackaged) {
-  var settingFiles = {
-    shortcuts: path.join(baseSettingsPath, './shortcuts.json'),
-    general: path.join(baseSettingsPath, './general.json')
-  }
+if (app.isPackaged){
+var settingFiles = {
+    shortcuts: path.join(__dirname,'./settings/shortcuts.json'),
+    general: path.join(__dirname,'./settings/general.json'),
+}
 } else {
   var settingFiles = {
     shortcuts: path.join(process.cwd(), 'debug_datas', './settings/shortcuts.json'),
     general: path.join(process.cwd(), 'debug_datas', './settings/general.json')
   }
 }
+
+
+var baseSettingsPath = path.join(__dirname,'./settings/')
+
+function createDefaultGeneralSettings() : GeneralSettingOptions{
+    return {}
+}
+
+function createDefaultShortcutSettings() : ShortcutSettingOptions{
+    return {
+        shortcuts: [],
+        folders: []
+    }
+}
+
 
 export class SettingsManager {
   private static instance: SettingsManager
@@ -42,10 +54,12 @@ export class SettingsManager {
 
   // private _uuid = ''
 
-  // Coming soon
-  private _generalSettings: GeneralSettingOption[] = []
+    // Coming soon
+    private _generalSettings: GeneralSettingOptions = createDefaultGeneralSettings();
 
-  private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings()
+
+    private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings();
+    
 
   // GenByAI: 获取 DataManager 实例
   public static getInstance(): SettingsManager {
@@ -62,10 +76,10 @@ export class SettingsManager {
     return this._shortcutSettings
   }
 
-  // GenByAI: 获取 generalSettings
-  public get generalSettings(): GeneralSettingOption[] {
-    return this._generalSettings
-  }
+    // GenByAI: 获取 generalSettings
+    public get generalSettings(): GeneralSettingOptions {
+        return this._generalSettings;
+    }
 
   public setGeneralSettingsOptions(option: string, value: any) {
     if (this._generalSettings) {
@@ -257,11 +271,11 @@ export class SettingsManager {
     console.log(this._shortcutSettings)
   }
 
-  async init() {
-    this._generalSettings = []
-    this._shortcutSettings = createDefaultShortcutSettings()
-    this._shortcutSettings.folders = getFolders(this._shortcutSettings.shortcuts)
-    // this._uuid = crypto.randomUUID()
+    async init() {
+        // this._generalSettings = createDefaultGeneralSettings()
+        // this._shortcutSettings = createDefaultShortcutSettings()
+        this._shortcutSettings.folders = getFolders(this._shortcutSettings.shortcuts)
+        // this._uuid = crypto.randomUUID()
 
     await this.checkFiles()
     await this.loadData()
