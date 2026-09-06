@@ -1,7 +1,7 @@
 import { readFile, mkdir, writeFile } from 'fs/promises'
 import { existsSync } from 'fs'
-import type { Shortcut } from '../../../shared/Types/Shortcut'
-import { isShortcutEqual } from '../../../shared/Types/Shortcut'
+import type { Shortcut,GeneralSettingOption,ShortcutSettingOptions } from '../../../shared/Types/Settings'
+import { createDefaultShortcutSettings,isShortcutEqual } from '../../../shared/Types/Settings'
 import { ipcMain, app } from 'electron'
 import path from 'path'
 import { getFolders } from '../Path'
@@ -43,7 +43,7 @@ export class SettingsManager {
   // private _uuid = ''
 
   // Coming soon
-  private _generalSettings: GeneralSettingOption = createDefaultGeneralSettings()
+  private _generalSettings: GeneralSettingOption[] = []
 
   private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings()
 
@@ -63,7 +63,7 @@ export class SettingsManager {
   }
 
   // GenByAI: 获取 generalSettings
-  public get generalSettings(): GeneralSettingOption {
+  public get generalSettings(): GeneralSettingOption[] {
     return this._generalSettings
   }
 

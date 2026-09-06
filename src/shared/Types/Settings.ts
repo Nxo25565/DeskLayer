@@ -15,14 +15,7 @@ export function serializeShortcut(shortcut: Shortcut): any {
     importedFromFolder: shortcut.importedFromFolder
   }
 }
-export interface GeneralSettingOption { 
-  name: string,
-  type: string
-}
-export interface ShortcutSettingOptions {
-  shortcuts: Shortcut[]
-  folders: string[] // cached after loaded
-}
+
 
 
 /*
@@ -35,6 +28,17 @@ list
 detailed_list
 
 */
+export interface GeneralSettingOption { 
+  name: string,
+  type: string
+}
+export interface ShortcutSettingOptions {
+  shortcuts: Shortcut[]
+  folders: string[] // cached after loaded
+}
+
+
+
 export function createDefaultGeneralSettingOption(dName="",dType=""): GeneralSettingOption {
   return {
     name: dName,
