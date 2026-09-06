@@ -4,8 +4,7 @@ import { importFolderShortcuts } from '../utils/Path'
 import { BrowserWindow,ipcMain } from 'electron'
 import { dialog } from 'electron'
 import { processLnkPath } from '../utils/Path'
-import { Shortcut } from '../../shared/Types/Settings'
-
+import { Shortcut } from '../../shared/Types/Shortcut'
 
 // import { VersionInfo } from '../../shared/Types/VersionInfo'
 

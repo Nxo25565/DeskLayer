@@ -1,4 +1,4 @@
-import { Shortcut } from "../../shared/Types/Shortcut";
+import { Shortcut } from '../../shared/Types/Shortcut'
 import { match } from 'pinyin-pro'
 import { SettingsManager } from './Settings/SettingsManager'
 
