@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import type { VersionInfo } from '../../shared/Types/VersionInfo'
-import type { Shortcut } from '../../shared/Types/Settings'
+import type { Shortcut } from '../../shared/Types/Shortcut'
+import { GeneralSettingOption } from '../../shared/Types/Settings'
 
 contextBridge.exposeInMainWorld('about', {
   getVersion: (): Promise<VersionInfo> => ipcRenderer.invoke('about:get-version')
@@ -35,7 +36,7 @@ contextBridge.exposeInMainWorld('settings', {
   // 获取快捷方式列表
   getShortcuts: (): Promise<Shortcut[]> => ipcRenderer.invoke('settings:get-shortcuts'),
   // 获取通用配置
-  getGeneral: (): Promise<any> => ipcRenderer.invoke('settings:get-general'),
+  getGeneral: (): Promise<GeneralSettingOption[]> => ipcRenderer.invoke('settings:get-general'),
   // 保存设置
   save: (): Promise<void> => ipcRenderer.invoke('settings:save'),
   // 获取已导入的文件夹列表

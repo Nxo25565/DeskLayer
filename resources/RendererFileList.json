@@ -19,6 +19,10 @@
     ],
     "settings": [
         {
+            "path": "./styles/components/GenralSettingsField.css",
+            "priority": 1
+        },
+        {
             "path": "./styles/components/ListItem.css",
             "priority": 1
         },

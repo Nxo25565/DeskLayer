@@ -5,13 +5,9 @@ import { isShortcutEqual } from '../../../shared/Types/Shortcut'
 import { ipcMain,app } from 'electron'
 import path from 'path'
 import { getFolders } from '../Path'
+import { GeneralSettingOption } from '../../../shared/Types/Settings'
 
 const saveInterval = 1000
-
-
-interface GeneralSettingOptions {
-    
-}
 interface ShortcutSettingOptions {
     shortcuts: Shortcut[],
     folders: string[] // cached after loaded
@@ -34,9 +30,9 @@ var settingFiles = {
 
 var baseSettingsPath = path.join(__dirname,'./settings/')
 
-function createDefaultGeneralSettings() : GeneralSettingOptions{
-    return {}
-}
+// function createDefaultGeneralSettings() : GeneralSettingOptions[]{
+//     return []
+// }
 
 function createDefaultShortcutSettings() : ShortcutSettingOptions{
     return {
@@ -55,7 +51,7 @@ export class SettingsManager {
   // private _uuid = ''
 
     // Coming soon
-    private _generalSettings: GeneralSettingOptions = createDefaultGeneralSettings();
+    private _generalSettings: GeneralSettingOption[] = [];
 
 
     private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings();
@@ -77,13 +73,16 @@ export class SettingsManager {
   }
 
     // GenByAI: 获取 generalSettings
-    public get generalSettings(): GeneralSettingOptions {
+    public get generalSettings(): GeneralSettingOption[] {
         return this._generalSettings;
     }
 
   public setGeneralSettingsOptions(option: string, value: any) {
     if (this._generalSettings) {
-      this._generalSettings[option] = value
+
+      this._generalSettings[
+        this._generalSettings.findIndex((s) => s.name === option) // 找到对应的选项
+      ].value = value
       this.saveSettings()
     }
   }
@@ -183,14 +182,14 @@ export class SettingsManager {
       this.setGeneralSettingsOptions(option, value)
     })
 
-    // 获取快捷方式列表
-    ipcMain.handle('settings:get-shortcuts', () => {
-      return this._shortcutSettings.shortcuts
-    })
-
     // 获取通用配置
     ipcMain.handle('settings:get-general', () => {
       return this._generalSettings
+    })
+
+    // 获取快捷方式列表
+    ipcMain.handle('settings:get-shortcuts', () => {
+      return this._shortcutSettings.shortcuts
     })
 
     // 保存设置

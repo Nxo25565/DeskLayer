@@ -11,7 +11,8 @@ detailed_list
 */
 export interface GeneralSettingOption { 
   name: string,
-  type: string
+  type: string,
+  value: any
 }
 export interface ShortcutSettingOptions {
   shortcuts: Shortcut[]
@@ -20,10 +21,11 @@ export interface ShortcutSettingOptions {
 
 
 
-export function createDefaultGeneralSettingOption(dName="",dType=""): GeneralSettingOption {
+export function createDefaultGeneralSettingOption(dName="",dType="",sdefault=null): GeneralSettingOption {
   return {
     name: dName,
-    type: dType
+    type: dType,
+    value: sdefault
   }
 }
 export function createDefaultShortcutSettings(): ShortcutSettingOptions {

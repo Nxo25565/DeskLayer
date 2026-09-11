@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import type { Shortcut } from '../../shared/Types/Settings'
+import type { Shortcut } from '../../shared/Types/Shortcut'
 
 contextBridge.exposeInMainWorld('linkbro', {
   getShortcuts: (): Promise<Shortcut[]> => ipcRenderer.invoke('settings:get-shortcuts'),

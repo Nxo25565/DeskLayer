@@ -4,6 +4,7 @@ import DragScroll from '../shared/components/DragScroll.vue'
 import ListItem from '../shared/components/ListItem.vue'
 import { Shortcut } from '../../../shared/Types/Shortcut'
 import { onMounted } from 'vue'
+import GeneralSettingsViewer from './GeneralSettingsViewer.vue'
 
 var isOpenFileDialog = false
 
@@ -121,6 +122,9 @@ onMounted(async () => {
         @remove="removeShortcut(index)"
       />
     </DragScroll>
+
+    <h3>一般 General</h3>
+    <GeneralSettingsViewer />
   </div>
   <div>
     <h2>其他 Others</h2>

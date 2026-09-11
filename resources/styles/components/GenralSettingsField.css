@@ -1,0 +1,23 @@
+.general-settings-field {
+    margin: 8px 0 4px;
+    font-size: 15px;
+    color: #313131;
+}
+
+.bool-checkbox {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.string-input {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.number-input {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+}
