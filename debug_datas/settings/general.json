@@ -1,1 +1,14 @@
-{}
+[
+    {
+        "name": "launchOnBootstrap",
+        "type": "bool"
+    },
+    {
+        "name": "LBWindowHeight",
+        "type": "number"
+    },
+    {
+        "name": "LBWindowWeight",
+        "type": "number"
+    }
+]
