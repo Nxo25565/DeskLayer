@@ -10,6 +10,10 @@ contextBridge.exposeInMainWorld('linkbro', {
   searchShortcuts: (searchTerm: string): Promise<Shortcut[]> =>
     ipcRenderer.invoke('search-shortcuts', searchTerm),
 
+
+})
+
+contextBridge.exposeInIsolatedWorld(1024, 'lbAnimation',{
   onPlayShowAnimation: (callback: () => void) => ipcRenderer.on('animation: lbwindow-show', callback),
   onPlayHideAnimation: (callback: () => void) => ipcRenderer.on('animation: lbwindow-hide', callback),
 })

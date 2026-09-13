@@ -41,7 +41,7 @@ declare global {
       // FixByAI: 搜索方法类型声明
       searchShortcuts(searchTerm: string): Promise<Shortcut[]>,
       onPlayShowAnimation(callback: () => void): void,
-      onHideAnimation(callback: () => void): void,
+      onPlayHideAnimation(callback: () => void): void,
     }
   }
 }

@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, WebSource } from 'electron'
 import { readFileSync } from 'fs'
 import { join, resolve } from 'path'
 import { globSync } from 'fast-glob'
@@ -38,18 +38,22 @@ console.log('resources path: ', resolve(basePath))
 
 export function loadCustomJS(windowName: string, insertJS: InsertCustomFileOptions[]) {
   insertJS = insertJS.sort((a, b) => a.priority - b.priority)
-  for (const js of insertJS) {
-    try {
-      // FixByAI: js粘代码executejs也是神人
-      // FixByAI: 这里的windowName是window的id，而不是window对象
-      wm.getWindow(windowName)?.webContents?.executeJavaScript(readFileSync(join(basePath, js.path), 'utf-8'))
-      console.log('load js: ' + join(basePath, js.path) + ' on window: ' + windowName)
-    } catch (error) {
-      console.log('An error occurred when load js: ' + join(basePath, js.path))
-      console.log(error)
-    }
+  const webSource = insertJS.map((f) => ({
+      code: readFileSync(resolve(basePath, f.path), 'utf-8'),
+      url: resolve(basePath, f.path)
+    })) as WebSource[]
+  try {
+    wm.getWindow(windowName)?.webContents?.executeJavaScriptInIsolatedWorld(
+      1024,
+      webSource
+    )
+    console.log('load js: ' + webSource.map((f) => f.url).toString() + ' on window: ' + windowName)
+  } catch (error) {
+    console.log('An error occurred when load js: ' + join(basePath, [...insertJS.map((f) => f.path)].toString()))
+    console.log(error)
   }
 }
+
 
 export async function loadCustomStyle(windowName: string, insertStyle: InsertCustomFileOptions[]) {
   insertStyle = insertStyle.sort((a, b) => a.priority - b.priority)

@@ -21,12 +21,12 @@ function containerHideAnimation(){
     animejs.animate(
         '.linkbro-container',
         {
-            scaleX: [1,0],
-            scaleY: [1,0],
+            // scaleX: [1,0],
+            // scaleY: [1,0],
             opacity: [1,0],
             transformOrigin: '0% 0%',
             duration: 400,
-            ease: animejs.cubicBezier(0.856, -0.274,0,1.016)
+            ease: animejs.cubicBezier(0.1,0.7,0.5,1)
         }
     )
     console.log('containerAnimation hide end')
@@ -64,5 +64,5 @@ function showAnimations(){
     itemShowAnimation()
 }
 
-window.linkbro.onPlayShowAnimation(showAnimations)
-window.linkbro.onPlayHideAnimation(containerHideAnimation)
+window.lbAnimation.onPlayShowAnimation(showAnimations)
+window.lbAnimation.onPlayHideAnimation(containerHideAnimation)

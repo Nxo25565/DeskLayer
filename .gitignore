@@ -1,5 +1,6 @@
 # GenByAI: 忽略文件
 # Dependencies
+resources/js/libs/**/*.js
 node_modules/
 .pnp
 .pnp.js
@@ -57,8 +58,8 @@ coverage/
 
 # Others
 build.py
-Vue学习笔记.md
 .hintrc
 .build_cache.json
 temp/**/*
 build/**/*
+resources/js/libs/animejs-4.5.0/anime.umd.js
