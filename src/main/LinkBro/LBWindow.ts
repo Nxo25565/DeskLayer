@@ -24,6 +24,7 @@ const sizeFix = 0.2
 
 export function createLinkBroWindow(): BrowserWindow {
   const dataManager = SettingsManager.getInstance()
+  let hideTimer : NodeJS.Timeout | null = null;
 
   const windowPreference = {
     width: 500 * (1+sizeFix),
@@ -47,6 +48,17 @@ export function createLinkBroWindow(): BrowserWindow {
   const lbWindow = new BrowserWindow(windowPreference)
   lbWindow.loadFile(pageFile)
 
+
+  function hideWindow(){
+    isLinkBroShown = false
+    lbWindow.webContents.send('animation: lbwindow-hide')
+    hideTimer?.close()
+    hideTimer = setTimeout(() => {
+      if (!isLinkBroShown) {   // Fix: 在窗口出现后掐掉隐藏行为，防止短时内窗口出现后突然隐藏
+        lbWindow.hide()
+      }
+    }, 800)
+  }
   
 
   // Sth for sys
@@ -58,19 +70,13 @@ export function createLinkBroWindow(): BrowserWindow {
       lbWindow.webContents.send('animation: lbwindow-show')
 
       lbWindow.show()
+      isLinkBroShown = true
     } else {
-      lbWindow.hide()
+      hideWindow()
     }
-    isLinkBroShown = !isLinkBroShown
   })
   globalShortcut.register('Escape', () => {
-    lbWindow.webContents.send('animation: lbwindow-hide')
-    const hideTimer = setInterval(() => {
-      lbWindow.hide()
-      isLinkBroShown = false
-      clearInterval(hideTimer)
-    }, 800)
-    
+    hideWindow()
   })
 
   // FixByAI: 页面加载完成后再缩小
