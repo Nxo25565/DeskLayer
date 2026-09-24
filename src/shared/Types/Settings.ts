@@ -11,6 +11,7 @@ detailed_list
 */
 export interface GeneralSettingOption { 
   name: string,
+  tag: string,
   type: string,
   value: any
 }
@@ -21,9 +22,10 @@ export interface ShortcutSettingOptions {
 
 
 
-export function createDefaultGeneralSettingOption(dName="",dType="",sdefault=null): GeneralSettingOption {
+export function createDefaultGeneralSettingOption(dName="",dType="",sdefault=null,dTag=""): GeneralSettingOption {
   return {
     name: dName,
+    tag: dTag,
     type: dType,
     value: sdefault
   }

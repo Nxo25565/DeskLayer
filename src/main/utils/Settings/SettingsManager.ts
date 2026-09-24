@@ -72,10 +72,14 @@ export class SettingsManager {
     return this._shortcutSettings
   }
 
-    // GenByAI: 获取 generalSettings
-    public get generalSettings(): GeneralSettingOption[] {
-        return this._generalSettings;
-    }
+  // GenByAI: 获取 generalSettings
+  public get generalSettings(): GeneralSettingOption[] {
+      return this._generalSettings;
+  }
+
+  public getGeneralSetting(option: string) {
+    return this._generalSettings.find((s) => s.tag === option)?.value
+  }
 
   public setGeneralSettingsOptions(option: string, value: any) {
     if (this._generalSettings) {
@@ -187,6 +191,11 @@ export class SettingsManager {
       return this._generalSettings
     })
 
+    // 根据选项名获取通用配置项
+    ipcMain.handle('settings:get-general-option', (_event, option: string) => {
+      return this.getGeneralSetting(option)
+    })
+
     // 获取快捷方式列表
     ipcMain.handle('settings:get-shortcuts', () => {
       return this._shortcutSettings.shortcuts
@@ -214,6 +223,8 @@ export class SettingsManager {
     ipcMain.removeHandler('settings:get-shortcuts')
     ipcMain.removeHandler('settings:get-general')
     ipcMain.removeHandler('settings:save')
+    ipcMain.removeHandler('settings:get-folders')
+    ipcMain.removeHandler('settings:get-general-option')
     ipcMain.removeHandler('settings:get-folders')
   }
 

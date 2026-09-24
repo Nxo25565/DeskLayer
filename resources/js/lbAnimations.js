@@ -64,5 +64,7 @@ function showAnimations(){
     itemShowAnimation()
 }
 
+console.log(window.settings.getGeneral())
+
 window.lbAnimation.onPlayShowAnimation(showAnimations)
 window.lbAnimation.onPlayHideAnimation(containerHideAnimation)

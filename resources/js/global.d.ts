@@ -11,7 +11,9 @@ declare interface Window {
       // searchShortcuts(searchTerm: string): Promise<Shortcut[]>,
       onPlayShowAnimation(callback: () => void): void,
       onHideAnimation(callback: () => void): void,
-    }
+  },
+  settings: {
+    getGeneral(): Promise<any>,
+    getGeneralOption(option: string): Promise<any>,
+  }
 }
-
-

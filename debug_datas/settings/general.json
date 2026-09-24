@@ -1,16 +1,19 @@
 [
   {
     "name": "LaunchOnBootstrap 自启动",
+    "tag": "launchOnBootstrap",
     "type": "bool",
     "value": true
   },
   {
     "name": "LBWindowHeight 窗口高度",
+    "tag": "height",
     "type": "number",
     "value": 600
   },
   {
     "name": "LBWindowWeight 窗口宽度",
+    "tag": "width",
     "type": "number",
     "value": 420
   }

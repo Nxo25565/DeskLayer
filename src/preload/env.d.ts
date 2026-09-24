@@ -33,7 +33,9 @@ declare global {
       // GenByAI: 保存设置
       save(): Promise<void>
       // 获取已导入的文件夹列表
-      getFolders(): Promise<string[]>
+      getFolders(): Promise<string[]>,
+      // GenByAI: 根据选项名获取通用配置项
+      getGeneralOption(option: string): Promise<any>,
     }
     linkbro: {
       getShortcuts(): Promise<Shortcut[]>

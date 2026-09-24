@@ -37,6 +37,8 @@ contextBridge.exposeInMainWorld('settings', {
   getShortcuts: (): Promise<Shortcut[]> => ipcRenderer.invoke('settings:get-shortcuts'),
   // 获取通用配置
   getGeneral: (): Promise<GeneralSettingOption[]> => ipcRenderer.invoke('settings:get-general'),
+  // 根据选项名获取通用配置项
+  getGeneralOption: (option: string): Promise<any> => ipcRenderer.invoke('settings:get-general-option', option),
   // 保存设置
   save: (): Promise<void> => ipcRenderer.invoke('settings:save'),
   // 获取已导入的文件夹列表

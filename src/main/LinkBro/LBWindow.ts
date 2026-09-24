@@ -20,16 +20,18 @@ import { Searcher } from '../utils/Searcher'
 // ]
 
 var isLinkBroShown = false
-const sizeFix = 0.2
+const sizeFix = 0.3    // 魔法数字，梦到了写上的
 
 export function createLinkBroWindow(): BrowserWindow {
-  const dataManager = SettingsManager.getInstance()
+  const settingsManager = SettingsManager.getInstance()
+  const width = settingsManager.getGeneralSetting('width')
+  const height = settingsManager.getGeneralSetting('height')
+
   let hideTimer : NodeJS.Timeout | null = null;
 
   const windowPreference = {
-    width: 500 * (1+sizeFix),
-    height: 600 * (1+sizeFix),
-
+    width: width * (1+sizeFix),
+    height: height * (1+sizeFix),
     transparent: true,
     alwaysOnTop: false,
     webPreferences: {
@@ -68,7 +70,7 @@ export function createLinkBroWindow(): BrowserWindow {
       lbWindow.setPosition(mousePos.x, mousePos.y)
       // 提前通知动画开始
       lbWindow.webContents.send('animation: lbwindow-show')
-
+      
       lbWindow.show()
       isLinkBroShown = true
     } else {
@@ -86,13 +88,13 @@ export function createLinkBroWindow(): BrowserWindow {
 
   // FixByAI: 直接从 DataManager 获取最新数据
   ipcMain.handle('get-shortcuts', () => {
-    return dataManager.shortcutSettings.shortcuts
+    return settingsManager.shortcutSettings.shortcuts
   })
 
   // FixByAI: 搜索快捷键，复用已实现的 Searcher.search()
   ipcMain.handle('search-shortcuts', (_event, searchTerm: string) => {
     const searcher = Searcher.getInstance()
-    return searcher.search(searchTerm, dataManager.shortcutSettings.shortcuts)
+    return searcher.search(searchTerm, settingsManager.shortcutSettings.shortcuts)
   })
 
   // GenByAI: 打开快捷方式
