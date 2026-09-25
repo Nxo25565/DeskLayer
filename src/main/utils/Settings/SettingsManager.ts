@@ -16,9 +16,10 @@ interface ShortcutSettingOptions {
 // console.log('DIR: ',process.cwd())
 
 if (app.isPackaged){
+console.log('Packaged')
 var settingFiles = {
-    shortcuts: path.join(__dirname,'./settings/shortcuts.json'),
-    general: path.join(__dirname,'./settings/general.json'),
+    shortcuts: path.join(process.resourcesPath,'./settings/shortcuts.json'),
+    general: path.join(process.resourcesPath,'./settings/general.json'),
 }
 } else {
   var settingFiles = {
@@ -28,11 +29,7 @@ var settingFiles = {
 }
 
 
-var baseSettingsPath = path.join(__dirname,'./settings/')
-
-// function createDefaultGeneralSettings() : GeneralSettingOptions[]{
-//     return []
-// }
+var baseSettingsPath = path.join(process.resourcesPath,'./settings/')
 
 function createDefaultShortcutSettings() : ShortcutSettingOptions{
     return {
@@ -48,13 +45,11 @@ export class SettingsManager {
   private _saveTimer
   private _savePromised = false
 
-  // private _uuid = ''
 
-    // Coming soon
-    private _generalSettings: GeneralSettingOption[] = [];
+  private _generalSettings: GeneralSettingOption[] = [];
+  private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings();
 
-
-    private _shortcutSettings: ShortcutSettingOptions = createDefaultShortcutSettings();
+  public _settingsChangedCallback = new Array<() => void>()
     
 
   // GenByAI: 获取 DataManager 实例
@@ -275,6 +270,7 @@ export class SettingsManager {
   }
 
   saveSettings() {
+    this._settingsChangedCallback.forEach(callback => callback())
     this._savePromised = true
     console.log('Saving settings...')
     console.log(this._generalSettings)
@@ -291,5 +287,9 @@ export class SettingsManager {
     await this.loadData()
     this.registerIpcHandlers()
     this.scheduleSave()
+  }
+
+  public onSettingsChanged(callback: () => void){
+    this._settingsChangedCallback.push(callback)
   }
 }

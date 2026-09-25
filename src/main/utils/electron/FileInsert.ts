@@ -4,17 +4,6 @@ import { join, resolve } from 'path'
 import { globSync } from 'fast-glob'
 import { WindowManager } from './WindowManage'
 
-/*
-
-TODO: 自定义css/js动画
-
-- 加载自定义js文件 x
-- 加载自定义css文件 x
-- 解析glob-star路径 x
-- 加载默认js/css文件 x
-
-*/
-
 export interface InsertCustomFileOptions {
   path: string
   priority: number
@@ -33,8 +22,9 @@ app.on('ready', () => {
 
 console.log(process.cwd())
 
-const basePath = !app.isPackaged ? join(process.cwd(), './resources') : join(process.cwd(), './resources/app.asar.unpacked/resources')
+const basePath = !app.isPackaged ? join(process.cwd(), './resources') : join(process.resourcesPath, './app.asar.unpacked/resources')
 console.log('resources path: ', resolve(basePath))
+console.log('packaged',join(process.cwd(), './resources/app.asar.unpacked/resources'))
 
 export function loadCustomJS(windowName: string, insertJS: InsertCustomFileOptions[]) {
   insertJS = insertJS.sort((a, b) => a.priority - b.priority)

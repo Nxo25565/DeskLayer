@@ -1,9 +1,10 @@
 import { Tray, Menu, app } from 'electron'
 import { join } from 'path'
 import { WindowManager } from './utils/electron/WindowManage'
+import { resourcesPath } from 'process'
 
 // GenByAI: 创建托盘图标
-const basePath = !app.isPackaged ? join(process.cwd(), './resources') : join(process.cwd(), './resources/app.asar.unpacked/resources')
+const basePath = !app.isPackaged ? join(process.cwd(), './resources') : join(resourcesPath, './app.asar.unpacked/resources')
 const iconPath = join(basePath, 'icon32.png')
 console.log(iconPath)
 
