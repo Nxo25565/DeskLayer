@@ -1,6 +1,5 @@
 import { Shortcut } from '../../shared/Types/Shortcut'
 import { match } from 'pinyin-pro'
-import { SettingsManager } from './Settings/SettingsManager'
 
 const searchConfig = {
   precision: 'any', //'first' | 'start' | 'every' | 'any';
@@ -75,6 +74,6 @@ export class Searcher {
   }
 }
 
-const dm = SettingsManager.getInstance()
-const shortcuts = dm.shortcutSettings.shortcuts
-console.log(Searcher.getInstance().searchShortcut('a', shortcuts))
+// const dm = SettingsManager.getInstance()
+// const shortcuts = dm.shortcutSettings.shortcuts
+// console.log(Searcher.getInstance().searchShortcut('a', shortcuts))

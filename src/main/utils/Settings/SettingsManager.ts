@@ -14,22 +14,27 @@ interface ShortcutSettingOptions {
 }
 // out main
 // console.log('DIR: ',process.cwd())
+var settingFiles: {shortcuts: string, general: string} = {}
+var baseSettingsPath: string = ''
 
-if (app.isPackaged){
-console.log('Packaged')
-var settingFiles = {
-    shortcuts: path.join(process.resourcesPath,'./settings/shortcuts.json'),
-    general: path.join(process.resourcesPath,'./settings/general.json'),
-}
-} else {
-  var settingFiles = {
-    shortcuts: path.join(process.cwd(), 'debug_datas', './settings/shortcuts.json'),
-    general: path.join(process.cwd(), 'debug_datas', './settings/general.json')
+
+function getPath(){
+  if (app.isPackaged){
+  console.log('Packaged')
+  settingFiles = {
+      shortcuts: path.join(process.resourcesPath,'./settings/shortcuts.json'),
+      general: path.join(process.resourcesPath,'./settings/general.json'),
   }
+  } else {
+    var settingFiles = {
+      shortcuts: path.join(process.cwd(), 'debug_datas', './settings/shortcuts.json'),
+      general: path.join(process.cwd(), 'debug_datas', './settings/general.json')
+    }
+  }
+
+
+  baseSettingsPath = path.join(process.resourcesPath,'./settings/')
 }
-
-
-var baseSettingsPath = path.join(process.resourcesPath,'./settings/')
 
 function createDefaultShortcutSettings() : ShortcutSettingOptions{
     return {
