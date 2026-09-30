@@ -19,7 +19,6 @@ function onSelect(index: number) {
   console.log('Selected index:', index, shortcuts.value[index])
 }
 
-// GenByAI: 回车打开选中项
 async function onOpen(index: number) {
   console.log('Opening:', shortcuts.value[index])
   await window.linkbro.openShortcut(serializeShortcut(shortcuts.value[index]))
@@ -29,7 +28,6 @@ watch(searchText, async (newText) => {
   shortcuts.value = await window.linkbro.searchShortcuts(newText)
 })
 
-// FixByAI: 聚焦搜索输入框，供多处调用
 function focusSearchInput() {
   searchInput.value?.focus()
 }
@@ -37,10 +35,8 @@ function focusSearchInput() {
 onMounted(async () => {
   await window.linkbro.getShortcuts()
 
-  // FixByAI: 首次挂载立即聚焦 input
   focusSearchInput()
 
-  // FixByAI: 窗口每次获得焦点时（如 show/focus）都重新聚焦 input
   window.addEventListener('focus', focusSearchInput)
 })
 
@@ -49,7 +45,6 @@ loadShortcuts()
 
 <template>
   <div class="linkbro-container">
-    <!-- FixByAI: +号网格背景容器（由注入脚本dotGenerate.js自动填充） -->
     <div class="plus-grid-background"></div>
 
     <h1 class="header">DESKLAYER a0.0.1 awa</h1>

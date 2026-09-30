@@ -27,7 +27,6 @@ contextBridge.exposeInMainWorld('settings', {
   // 移除多个快捷方式
   removeMultipleShortcuts: (shortcuts: Shortcut[]): Promise<void> =>
     ipcRenderer.invoke('settings:remove-multiple-shortcuts', shortcuts),
-  // GenByAI: 移除指定文件夹导入的所有快捷方式
   removeShortcutsByFolder: (folderPath: string): Promise<void> =>
     ipcRenderer.invoke('settings:remove-shortcuts-by-folder', folderPath),
   // 设置通用配置项

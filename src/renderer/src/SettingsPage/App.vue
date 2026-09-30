@@ -45,13 +45,11 @@ function removeFolder(index: number) {
 }
 
 function removeShortcut(index: number) {
-  // FixByAI: 使用展开运算符剥离 Vue reactive proxy，避免 IPC 序列化失败
   window.settings.removeSingleShortcut({ ...shortcuts.value[index] })
   shortcuts.value.splice(index, 1)
   window.settings.save()
 }
 
-// FixByAI: 封装去重添加函数，根据 path 去重
 function addMultiShortcuts(newShortcuts: Shortcut[]) {
   for (const shortcut of newShortcuts) {
     if (!shortcuts.value.some((s) => s.path === shortcut.path)) {
@@ -62,7 +60,6 @@ function addMultiShortcuts(newShortcuts: Shortcut[]) {
   window.settings.save()
 }
 
-// FixByAI: 封装文件夹去重添加函数
 function addFolder(folderPath: string) {
   if (folderPath && !folders.value.includes(folderPath)) {
     folders.value.unshift(folderPath)

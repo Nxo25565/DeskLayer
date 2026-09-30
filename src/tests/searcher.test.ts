@@ -38,8 +38,7 @@ describe('searcher', () => {
     const sm = SettingsManager.getInstance()
     sm.checkFiles = vi.fn()
     sm.init()
-    
-    // FixByAI: mock 测试数据，确保搜索有结果
+
     sm.shortcutSettings.shortcuts = [
         { name: 'Visual Studio Code', exec: 'code.exe' } as any
     ]

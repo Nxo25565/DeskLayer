@@ -1,4 +1,3 @@
-# GenByAI: 忽略文件
 # Dependencies
 resources/js/libs/**/*.js
 node_modules/

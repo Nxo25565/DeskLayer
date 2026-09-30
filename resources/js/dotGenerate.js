@@ -36,7 +36,6 @@ function generatePlusGrid(container) {
       plus.textContent = '+'
       plus.className = 'plus-symbol'
 
-      // FixByAI: 使用cssText一次性设置样式，减少重排
       plus.style.cssText = `
         position: absolute;
         left: ${col * gridSize + gridSize / 2}px;
@@ -58,8 +57,6 @@ function generatePlusGrid(container) {
   return container.children.length > 10
 }
 
-// FixByAI: 延迟重试机制 - 确保DOM完全渲染后再生成
-// 实现原理：多次尝试直到成功或达到最大重试次数
 function initPlusGrid() {
   let retryCount = 0
   const MAX_RETRY = 10
@@ -89,7 +86,6 @@ function initPlusGrid() {
     setTimeout(tryGenerate, 100)
   }
 
-  // FixByAI: 额外保险：window.onload再试一次
   window.addEventListener('load', () => setTimeout(tryGenerate, 150))
 }
 

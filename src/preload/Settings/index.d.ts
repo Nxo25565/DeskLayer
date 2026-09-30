@@ -22,7 +22,6 @@ declare global {
       addMultipleShortcuts(shortcuts: Shortcut[]): Promise<void>
       // 移除多个快捷方式
       removeMultipleShortcuts(shortcuts: Shortcut[]): Promise<void>
-      // GenByAI: 移除指定文件夹导入的所有快捷方式
       removeShortcutsByFolder(folderPath: string): Promise<void>
       // 设置通用配置项
       setGeneralOption(option: string, value: any): Promise<void>
