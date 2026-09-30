@@ -61,4 +61,4 @@ build.py
 .build_cache.json
 temp/**/*
 build/**/*
-resources/js/libs/animejs-4.5.0/anime.umd.js
+resources/js/libs/**/*

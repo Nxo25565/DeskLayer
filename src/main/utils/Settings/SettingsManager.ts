@@ -14,7 +14,7 @@ interface ShortcutSettingOptions {
 }
 // out main
 // console.log('DIR: ',process.cwd())
-var settingFiles: {shortcuts: string, general: string} = {}
+var settingFiles: {shortcuts: string, general: string};
 var baseSettingsPath: string = ''
 
 
@@ -26,7 +26,7 @@ function getPath(){
       general: path.join(process.resourcesPath,'./settings/general.json'),
   }
   } else {
-    var settingFiles = {
+    settingFiles = {
       shortcuts: path.join(process.cwd(), 'debug_datas', './settings/shortcuts.json'),
       general: path.join(process.cwd(), 'debug_datas', './settings/general.json')
     }
@@ -43,6 +43,7 @@ function createDefaultShortcutSettings() : ShortcutSettingOptions{
     }
 }
 
+getPath()
 
 export class SettingsManager {
   private static instance: SettingsManager

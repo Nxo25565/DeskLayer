@@ -27,7 +27,7 @@ console.log('resources path: ', resolve(basePath))
 console.log('packaged',join(process.cwd(), './resources/app.asar.unpacked/resources'))
 
 export function loadCustomJS(windowName: string, insertJS: InsertCustomFileOptions[]) {
-  insertJS = insertJS.sort((a, b) => a.priority - b.priority)
+  insertJS = insertJS.sort((a, b) => a.priority - b.priority).filter((f) => f.path.endsWith('.js'))
   const webSource = insertJS.map((f) => ({
       code: readFileSync(resolve(basePath, f.path), 'utf-8'),
       url: resolve(basePath, f.path)
