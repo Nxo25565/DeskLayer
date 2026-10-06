@@ -408,3 +408,224 @@ extraResources:
 ```gitignore
 # GenByAI: 忽略文件
 ```
+
+---
+
+## #10 Settings页面 - 标题竖向布局优化
+
+### 需求描述
+将设置页面的标题（中英文）调整为在 DragScroll 右侧竖向显示，实现一大一小的视觉效果。
+
+### 修改内容
+
+**GenByAI**: 调整 #settings 父容器为 flex 横向布局
+
+**文件位置**: [index.css:1-8](resources/styles/pages/Settings/index.css#L1-L8)
+
+```css
+/* GenByAI: 父容器使用 flex 横向布局 */
+#settings {
+  display: flex;
+  gap: 20px;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+```
+
+**GenByAI**: 重构 #settings-title 容器为 flex 纵向布局，支持中英文上下排列
+
+**文件位置**: [index.css:10-14](resources/styles/pages/Settings/index.css#L10-L14)
+
+```css
+/* GenByAI: 标题容器改为 flex 纵向布局 */
+#settings-title {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+```
+
+**GenByAI**: 中文标题样式 - 大字号、粗体、主色调
+
+**文件位置**: [index.css:16-21](resources/styles/pages/Settings/index.css#L16-L21)
+
+```css
+/* GenByAI: 中文标题大字号显示 */
+#settings-title-zh {
+  font-size: 28px;
+  font-weight: 600;
+  color: #8f8f8fd5;
+  writing-mode: vertical-rl;
+  letter-spacing: 6px;
+}
+```
+
+**GenByAI**: 英文标题样式 - 小字号、正常字重、浅色
+
+**文件位置**: [index.css:23-29](resources/styles/pages/Settings/index.css#L23-L29)
+
+```css
+/* GenByAI: 英文标题小字号显示 */
+#settings-title-eng {
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+  writing-mode: vertical-rl;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+```
+
+**GenByAI**: DragScroll 容器自适应剩余空间
+
+**文件位置**: [index.css:31-36](resources/styles/pages/Settings/index.css#L31-L36)
+
+```css
+/* GenByAI: 内容区域自动填充剩余空间 */
+.settings-container {
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 24px;
+  flex: 1;
+  overflow: auto;
+}
+```
+
+### 实现原理
+1. 使用 `display: flex` 让 `#settings` 容器的子元素（DragScroll 和 title）横向排列
+2. `#settings-title` 使用 `flex-direction: column` 让中英文标题纵向堆叠
+3. 通过 `writing-mode: vertical-rl` 实现文字竖向显示
+4. 中英文分别设置不同字号（28px vs 14px）和字重（600 vs 400）形成大小对比
+5. DragScroll 使用 `flex: 1` 自动填充剩余空间
+
+### 最终效果
+```
+┌─────────────────────────┐ ┌──────┐
+│                         │ │设    │
+│   DragScroll 内容区域    │ │置    │
+│                         │ │      │
+│                         │ │S    │
+│                         │ │e    │
+│                         │ │t    │
+│                         │ │t    │
+│                         │ │i    │
+│                         │ │n    │
+│                         │ │g    │
+│                         │ │s    │
+└─────────────────────────┘ └──────┘
+     ↑ 大字号(28px)       ↑ 小字号(14px)
+```
+
+---
+
+## #11 Settings页面 - 正文与提示文本样式扩展
+
+### 需求描述
+基于已有的标题样式层级（一级/二级/三级标题），补充对应的正文和提示文本样式，形成完整的排版体系。
+
+### 新增内容
+
+**GenByAI**: 中文正文样式 - 适中字号、舒适行高、主文本颜色
+
+**文件位置**: [index.css:128-135](resources/styles/pages/Settings/index.css#L128-L135)
+
+```css
+/* GenByAI: 中文正文样式 - 16px字号，1.8行高保证阅读舒适度 */
+.text-zh {
+  font-size: 16px;
+  color: #333333;
+  line-height: 1.8;
+  margin: 8px 0;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+```
+
+**GenByAI**: 英文正文样式 - 较小字号、稍浅颜色、保持视觉层次
+
+**文件位置**: [index.css:137-143](resources/styles/pages/Settings/index.css#L137-L143)
+
+```css
+/* GenByAI: 英文正文 - 13px字号，透明度0.85降低视觉权重 */
+.text-eng {
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 6px 0;
+  padding: 0;
+  margin-right: -2px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+```
+
+**GenByAI**: 中文提示文本 - 小字号、次要信息颜色
+
+**文件位置**: [index.css:145-152](resources/styles/pages/Settings/index.css#L145-L152)
+
+```css
+/* GenByAI: 中文提示文本 - 用于辅助说明、注释等次要信息 */
+.hint-zh {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin: 4px 0;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+```
+
+**GenByAI**: 英文提示文本 - 最小字号、最浅颜色、最低视觉权重
+
+**文件位置**: [index.css:154-161](resources/styles/pages/Settings/index.css#L154-161)
+
+```css
+/* GenByAI: 英文提示文本 - 12px最小字号，用于细微说明 */
+.hint-eng {
+  font-size: 12px;
+  color: #888888;
+  line-height: 1.5;
+  opacity: 0.75;
+  margin: 2px 0;
+  padding: 0;
+  margin-right: -1px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+```
+
+### 样式层级体系
+
+| 层级 | 中文类名 | 英文类名 | 中文字号 | 英文字号 | 颜色（中/英） | 用途 |
+|------|---------|---------|---------|---------|--------------|------|
+| 一级标题 | `#settings-title-zh` | `#settings-title-eng` | 36px | 14px | #8f8f8f / #999 | 页面主标题 |
+| 二级标题 | `.title2-zh` | `.title2-eng` | 24px | 18px | #202020 / #202020 | 章节标题 |
+| 三级标题 | `.title3-zh` | `.title3-eng` | 18px | 14px | #202020 / #202020 | 小节标题 |
+| **正文** | **`.text-zh`** | **`.text-eng`** | **16px** | **13px** | **#333 / #555** | **主要内容** |
+| **提示文本** | **`.hint-zh`** | **`.hint-eng`** | **14px** | **12px** | **#666 / #888** | **辅助说明** |
+
+### 设计原则
+
+1. **字号递减**: 标题(36/24/18) → 正文(16) → 提示(14)，建立清晰的视觉层次
+2. **颜色淡化**: 主标题(#8f8f8f) → 二三级标题(#202020) → 正文(#333/#555) → 提示(#666/#888)
+3. **中英文差异**: 英文字号比中文小2-3px，颜色更浅，透明度更低(0.75-0.85)
+4. **行高适配**: 正文1.8保证阅读舒适，提示1.5-1.6紧凑显示
+5. **统一字族**: 全部使用"DengXian"优先的中文友好字体栈
+
+### 使用示例
+
+```html
+<!-- 二级标题 -->
+<h2 class="title2-zh">显示设置</h2>
+<span class="title2-eng">Display Settings</span>
+
+<!-- 正文段落 -->
+<p class="text-zh">这里是一段重要的正文内容，用于详细说明设置项的作用和使用方法。</p>
+<span class="text-eng">This is body text for detailed explanation.</span>
+
+<!-- 提示文本 -->
+<p class="hint-zh">注意：修改后需要重启应用才能生效</p>
+<span class="hint-eng">Note: Restart required after changes</span>
+```

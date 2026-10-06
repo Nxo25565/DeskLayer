@@ -29,10 +29,10 @@ watch(() => state_value.value, () => {
 })
 </script>
 <template>
-    <div class="general-settings-field">
+
         <div class="number-field">
-            <label>{{ label }}</label>
+            <label class="content-zh">{{ label }}</label>
             <input type="number" v-model="state_value" class="number-input"/>
         </div>
-    </div>
+
 </template>

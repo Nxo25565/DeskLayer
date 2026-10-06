@@ -8,29 +8,6 @@ import GeneralSettingsViewer from './GeneralSettingsViewer.vue'
 
 var isOpenFileDialog = false
 
-// const folders = ref<string[]>([
-//     'C:/Users/Admin/Desktop/Games',
-//     'C:/Users/Admin/Documents/Tools',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-//     'D:/Work/Projects',
-// ])
-
-// var shortcuts = ref<Shortcut[]>([
-//     { name: 'Chrome', path: 'C:/Program Files/Google/Chrome/Application/chrome.exe' },
-//     { name: 'VS Code', path: 'C:/Users/Admin/AppData/Local/Programs/Microsoft VS Code/Code.exe' },
-//     { name: 'Steam', path: 'C:/Program Files (x86)/Steam/Steam.exe' },
-//     { name: 'Notepad++', path: 'C:/Program Files/Notepad++/notepad++.exe' },
-//     { name: 'Discord', path: 'C:/Users/Admin/AppData/Local/Discord/Update.exe' },
-//     { name: 'Figma', path: 'C:/Users/Admin/AppData/Local/Figma/Figma.exe' },
-//     { name: 'Spotify', path: 'C:/Users/Admin/AppData/Roaming/Spotify/Spotify.exe' },
-//     { name: 'Postman', path: 'C:/Users/Admin/AppData/Local/Postman/Postman.exe' },
-// ])
-
 const folders = ref<string[]>([])
 const shortcuts = ref<Shortcut[]>([])
 
@@ -95,36 +72,64 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <h1>设置 Settings</h1>
+  
+  <DragScroll :min-height="500" class="settings-container">
+    
+    <div>
+      <div id="shortcut-title">
+        <p class="title2-zh">快捷方式管理</p>
+        <p class="title2-eng">Shortcuts Manage</p>
+      </div>
+      <div id="shortcut-title">
+        <p class="title3-zh">快捷方式</p>
+        <p class="title3-eng">Shortcuts</p>
+      </div>
+      <DragScroll>
+        <ListItem
+          v-for="(shortcut, index) in shortcuts"
+          :key="shortcut.path"
+          :name="shortcut.name"
+          :detail="shortcut.path"
+          @remove="removeShortcut(index)"
+        />
+      </DragScroll>
+      <div id="folder-title">
+        <p class="title3-zh">文件夹</p>
+        <p class="title3-eng">Folders</p>
+      </div>
+      <DragScroll>
+        <ListItem
+          v-for="(folder, index) in folders"
+          :key="folder"
+          :name="folder"
+          @remove="removeFolder(index)"
+        />
+      </DragScroll>
+      <div class="add-button-collection">
+        <button @click="importSingleShortcut" class="add-btn">
+          <p class="content-zh">导入单个 Import Single</p>
+        </button>
+        <button @click="importFolderShortcut" class="add-btn">
+          <p class="content-zh">导入文件夹 Import Folder</p>
+        </button>
+      </div>
+      <div id="shortcut-title" style="margin-top: 8px;">
+        <p class="title2-zh">一般设置</p>
+        <p class="title2-eng">General</p>
+      </div>
+      <hr>
+      <GeneralSettingsViewer />
+    </div>
   <div>
-    <h2>快捷方式管理 Shortcuts Manage</h2>
-    <button @click="importSingleShortcut">Import Single</button>
-    <button @click="importFolderShortcut">Import Folder</button>
-    <h3>文件夹 Folders</h3>
-    <DragScroll>
-      <ListItem
-        v-for="(folder, index) in folders"
-        :key="folder"
-        :name="folder"
-        @remove="removeFolder(index)"
-      />
-    </DragScroll>
-    <h3>快捷方式 Shortcuts</h3>
-    <DragScroll>
-      <ListItem
-        v-for="(shortcut, index) in shortcuts"
-        :key="shortcut.path"
-        :name="shortcut.name"
-        :detail="shortcut.path"
-        @remove="removeShortcut(index)"
-      />
-    </DragScroll>
-
-    <h3>一般 General</h3>
-    <GeneralSettingsViewer />
-  </div>
-  <div>
-    <h2>其他 Others</h2>
+      <div id="shortcut-title">
+        <p class="title2-zh">其他</p>
+        <p class="title2-eng">Others</p>
+      </div>
     <button @click="openAboutWin">About DeskLayer</button>
+  </div>
+  </DragScroll>
+  <div id="settings-title">
+    <p id="settings-title-zh">设置</p>
+    <p id="settings-title-eng">Settings</p>
   </div>
 </template>

@@ -27,10 +27,10 @@ watch(() => model_value.value, () => {
 })
 </script>
 <template>
-    <div class="general-settings-field">
+
         <div class="bool-field">
-            <label>{{ label }}</label>
+            <label class="content-zh">{{ label }}</label>
             <input type="checkbox" v-model="model_value" class="bool-checkbox"/>
         </div>
-    </div>
+
 </template>

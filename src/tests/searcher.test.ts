@@ -2,7 +2,7 @@ import { expect, it, describe, vi } from 'vitest'
 
 // 使用 vi.hoisted 确保这段代码在 vi.mock 和 import 之前执行
 const { mockResourcesPath } = vi.hoisted(() => {
-  ;(process as any).resourcesPath = '/tmp/test-resources'
+  ;(process as any).resourcesPath = './debug_datas'
   return {
     mockResourcesPath: './'
   }

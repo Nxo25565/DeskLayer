@@ -16,10 +16,10 @@ var isOpenedFileDialog = false
 export function createSettingsWindow(): BrowserWindow {
   const windowPreference = {
     width: 800,
-    height: 600,
-    // resizable: false,
-    // frame: false,
-    transparent: false,
+    height: 900,
+    resizable: true,
+    frame: false,
+    transparent: true,
     alwaysOnTop: false,
     webPreferences: {
       nodeIntegration: false,
@@ -29,7 +29,8 @@ export function createSettingsWindow(): BrowserWindow {
     // autoHideMenuBar: true,
     icon: 'public/icon.png',
     title: 'Settings',
-    show: false
+    show: false,
+    
     // titleBarStyle: 'hidden' as const
   }
 

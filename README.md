@@ -1,4 +1,6 @@
 # DeskLayer - Better? shortcut manager
+**warn: 项目处于待完善阶段，可执行文件可能要自己build，在package.json**
+
 基于electron的快捷方式管理器，可以快捷（或者以文件夹形式）添加、删除、并快速打开常用快捷方式。
 
 ## 功能

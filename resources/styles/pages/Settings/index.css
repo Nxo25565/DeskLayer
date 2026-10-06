@@ -1,5 +1,205 @@
-h3 {
-  margin: 16px 0 4px;
+/* 容器总布局 */
+#settings {
+  display: flex;
+  gap: 10px;
+  max-width: 820px;
+  min-height: 850px;
+  /* padding: 20px; */
+  box-sizing: border-box;
+  /* background: black; debug */
+}
+
+.settings-container {
+  max-width: 620px;
+  min-height: 650px;
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 24px;
+  flex: 1;
+  overflow: auto;
+}
+
+/* 设置标题 */
+#settings-title-zh {
+  font-size: 36px;
+  color: #8f8f8fd5;
+  writing-mode: vertical-rl;
+  letter-spacing: 4px;
+  margin: 0;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+#settings-title-eng {
   font-size: 14px;
-  color: #555;
+  color: #999;
+  writing-mode: vertical-rl;
+  letter-spacing: 1px;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0;
+  margin-right: -2px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+/* 二级标题 */
+.title2-zh {
+  font-size: 24px;
+  color: #3a3a3a;
+  letter-spacing: 0;
+  margin-bottom: -2px;
+  margin-top: 10px;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+.title2-eng {
+  font-size: 18px;
+  color: #202020;
+  letter-spacing: 0px;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0;
+  margin-right: -4px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+/* 三级标题 */
+.title3-zh {
+  font-size: 18px;
+  color: #202020;
+  letter-spacing: 0;
+  margin-bottom: -2px;
+  margin-top: 10px;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+.title3-eng {
+  font-size: 14px;
+  color: #202020;
+  letter-spacing: 0px;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0;
+  margin-right: -4px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+/* 正文 - GenByAI #11 */
+.content-zh {
+  font-size: 16px;
+  color: #333333;
+  /* line-height: 1.8; */
+  margin-top:2px;
+  margin-bottom: -2px;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+.content-eng {
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin: 0px 0;
+  padding: 0;
+  /* margin-right: -2px; */
+  margin-top: -4px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+/* 辅助文本/提示文本 */
+.hint-zh {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin: 4px 0;
+  padding: 0;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+.hint-eng {
+  font-size: 12px;
+  color: #888888;
+  line-height: 1.5;
+  opacity: 0.75;
+  margin: 2px 0;
+  padding: 0;
+  margin-right: -1px;
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+}
+
+/* 滚动列表*/
+.drag-resize-container:not(.settings-container) {
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  overflow-y: auto;
+  border: 2px solid #8ba9de;
+  border-radius: 14px;
+  background: #e8e8e894;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  /* border-bottom: 1px solid #eee; */
+  border: 2.5px solid #b4c7e798;
+  background: #699bf050;
+  border-radius: 10px;
+  margin: 8px;
+}
+
+.remove-btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 8px;
+  /* border-bottom: 1px solid #eee; */
+  border: 2.5px solid #F6D6D6;
+  background: #e58f8f84;
+  border-radius: 10px;
+  margin: 8px;
+}
+.list-item:hover {
+  background: #c9d9f2bc;
+}
+
+.remove-btn:hover {
+  background: #f6b4b4bc;
+}
+
+/* 添加按钮 */
+.add-button-collection{
+  margin-top: 4px;
+  display: flex;
+  justify-content: stretch;
+  gap: 8px;
+}
+
+.add-btn{
+  flex: 1;
+  flex-direction: row;
+  background:#eaeaeac5;
+  border: 2.5px solid #a6a6a632;
+  border-radius:40px;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.add-btn:hover{
+  background:#eaeaeae9;
+}
+.add-btn:active{
+  background:#9f9f9fe9;
+}
+
+/* 一般设置 */
+/* 单个Field */
+.number-input,.string-input,.bool-input{
+  flex-direction: row;
 }
