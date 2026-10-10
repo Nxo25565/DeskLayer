@@ -18,7 +18,7 @@ export function createSettingsWindow(): BrowserWindow {
     width: 800,
     height: 900,
     resizable: true,
-    frame: false,
+    // frame: false,
     transparent: true,
     alwaysOnTop: false,
     webPreferences: {

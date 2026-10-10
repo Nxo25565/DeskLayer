@@ -80,6 +80,7 @@ onMounted(async () => {
         <p class="title2-zh">快捷方式管理</p>
         <p class="title2-eng">Shortcuts Manage</p>
       </div>
+      <hr>
       <div id="shortcut-title">
         <p class="title3-zh">快捷方式</p>
         <p class="title3-eng">Shortcuts</p>

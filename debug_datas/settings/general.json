@@ -3,7 +3,7 @@
     "name": "LaunchOnBootstrap 自启动",
     "tag": "launchOnBootstrap",
     "type": "bool",
-    "value": true
+    "value": false
   },
   {
     "name": "LBWindowHeight 窗口高度",

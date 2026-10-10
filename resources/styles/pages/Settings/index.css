@@ -6,7 +6,7 @@
   min-height: 850px;
   /* padding: 20px; */
   box-sizing: border-box;
-  /* background: black; debug */
+  /* background: black; */
 }
 
 .settings-container {
@@ -20,6 +20,8 @@
   overflow: auto;
 }
 
+/* 文字总样式 */
+
 /* 设置标题 */
 #settings-title-zh {
   font-size: 36px;
@@ -29,6 +31,7 @@
   margin: 0;
   padding: 0;
   font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+  text-shadow: 10px 1px 8px rgba(0, 0, 0, 0.34), 0px 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 #settings-title-eng {
@@ -52,6 +55,7 @@
   margin-top: 10px;
   padding: 0;
   font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+  text-shadow: 10px 1px 8px rgba(0, 0, 0, 0.34), 0px 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .title2-eng {
@@ -137,9 +141,19 @@
   margin-left: 0px;
   margin-right: 0px;
   overflow-y: auto;
-  border: 2px solid #8ba9de;
+  border: 2px solid #8b91de;
   border-radius: 14px;
   background: #e8e8e894;
+  transition: background 0.3s ease;
+  box-shadow: inset 8px 8px 16px 0px rgba(163, 177, 198, 0.60), inset -8px -8px 16px 0px rgba(255, 255, 255, 0.90);
+}
+.drag-resize-container:not(.settings-container):hover{
+  background: #e8e8e8cc;
+  transition: background 0.3s ease;
+}
+
+.settings-container:hover{
+  cursor: default;
 }
 
 .list-item {
@@ -148,10 +162,11 @@
   align-items: center;
   padding: 6px 8px;
   /* border-bottom: 1px solid #eee; */
-  border: 2.5px solid #b4c7e798;
-  background: #699bf050;
+  border: 2.5px solid #b4b9e798;
+  background: #c4beff50;
   border-radius: 10px;
   margin: 8px;
+  transition: background 0.3s ease;
 }
 
 .remove-btn{
@@ -167,10 +182,12 @@
 }
 .list-item:hover {
   background: #c9d9f2bc;
+  transition: background 0.3s ease;
 }
 
 .remove-btn:hover {
   background: #f6b4b4bc;
+  transition: background 0.3s ease;
 }
 
 /* 添加按钮 */
@@ -184,7 +201,8 @@
 .add-btn{
   flex: 1;
   flex-direction: row;
-  background:#eaeaeac5;
+  background: #eaeaeae9;
+  transition: background 0.3s ease;
   border: 2.5px solid #a6a6a632;
   border-radius:40px;
   padding: 6px 12px;
@@ -192,14 +210,79 @@
 }
 
 .add-btn:hover{
-  background:#eaeaeae9;
+  transition: background 0.3s ease;
+  background:#d2d2d2c5;
 }
 .add-btn:active{
   background:#9f9f9fe9;
 }
 
-/* 一般设置 */
-/* 单个Field */
-.number-input,.string-input,.bool-input{
+/* 一般设置 - FixByAI #12 */
+/* 单个Field - GenByAI #12 */
+.number-field,.string-field,.bool-field{
+  appearance: none;
+  display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 10px 0px;
+}
+.number-input,.string-input{
+  padding: 5px;
+  margin-left: auto;
+  flex: 0.7; /* 输入框自动填充剩余空间 */
+  border-radius: 50px;
+  background-color:#fefefe;
+  border: 1px solid #999;
+}
+
+.number-input:focus{
+  outline: 3px solid #a0aeffe1;
+  outline-offset: -2px;
+  transition: outline 0.3s ease;
+}
+
+.bool-checkbox{
+  appearance: none; /* 移除原生样式 */
+  border-radius: 200px;
+  margin-left: auto; /* 复选框推到右侧 */
+  height: 20px;
+  width: 20px;
+  border: 2px solid #999; /* 添加边框 */
+  cursor: pointer; /* 鼠标指针 */
+  position: relative; /* 用于伪元素定位 */
+  transition: border 0.3s ease;
+}
+
+
+/* 选中状态的勾选标记 */
+.bool-checkbox:checked {
+  background-color: #ffb341;
+  border-color: #2c2c2c;
+  transition: background 0.3s ease;
+}
+.bool-checkbox:hover{
+  border-color: #3d3d3d;
+  transition: border 0.3s ease;
+}
+
+/* GenByAI */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(212, 212, 212, 0.578);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 160, 160, 0.731);
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 180, 180, 0.65);
 }

@@ -629,3 +629,58 @@ extraResources:
 <p class="hint-zh">注意：修改后需要重启应用才能生效</p>
 <span class="hint-eng">Note: Restart required after changes</span>
 ```
+
+### #12 表单字段布局优化
+
+**功能**: 优化设置页面的表单字段布局，让输入框自动填充剩余空间
+
+**修改内容** (FixByAI):
+- 为 `.number-field`, `.string-field`, `.bool-field` 添加 `width: 100%` 让字段占满容器宽度
+- 为 `.number-input`, `.string-input` 添加 `flex: 1` 让输入框自动填充剩余空间
+- 为 `.bool-checkbox` 添加 `margin-left: auto` 将复选框推到右侧
+
+**使用场景**: 设置页面中的表单字段（数字输入、文本输入、复选框等）
+
+**效果**: 标签在左侧，输入框/复选框自动拉伸填满剩余空间，提升空间利用率
+
+```css
+/* 示例：表单字段布局 */
+.number-field, .string-field, .bool-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  width: 100%; /* 占满容器宽度 */
+}
+
+.number-input, .string-input {
+  flex: 1; /* 输入框自动填充剩余空间 */
+}
+
+.bool-checkbox {
+  appearance: none; /* 移除原生样式以支持圆角 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 200px;
+  margin-left: auto; /* 复选框推到右侧 */
+  height: 20px;
+  width: 20px;
+  border: 2px solid #999;
+  cursor: pointer;
+  position: relative;
+}
+
+/* 选中状态勾选标记 */
+.bool-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+}
+```
+
+**注意**: 原生 checkbox 的 border-radius 不生效，必须使用 `appearance: none` 移除浏览器默认样式才能自定义圆角效果
