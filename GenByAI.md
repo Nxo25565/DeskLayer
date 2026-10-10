@@ -684,3 +684,51 @@ extraResources:
 ```
 
 **注意**: 原生 checkbox 的 border-radius 不生效，必须使用 `appearance: none` 移除浏览器默认样式才能自定义圆角效果
+
+---
+
+## #13 Settings页面 - 列表项悬停弹跳动画
+
+### 需求描述
+为设置页面的 `.single-scroll` 和 `.folders-scroll` 容器中的列表项添加鼠标悬停时的弹跳缩放动画。
+
+### 实现内容
+
+**GenByAI**: 列表项悬停弹跳动画，使用事件委托批量处理，调用 animejs WAAPI 实现
+
+**文件位置**: [listItemAnimation.js](resources/js/Settings/listItemAnimation.js)
+
+```javascript
+const animejs = window.anime
+
+function bounceAnimation(element) {
+    animejs.animate(element, {
+        scaleX: [0.9, 1],
+        scaleY: [0.9, 1],
+        duration: 500,
+        ease: 'outElastic'
+    })
+}
+
+// 事件委托：在容器上统一监听，避免逐个绑定
+singleContainer[0].addEventListener('mouseover', (e) => {
+    const item = e.target
+    if (item != singleContainer[0]) bounceAnimation(item)
+})
+folderConatiner[0].addEventListener('mouseover', (e) => {
+    const item = e.target
+    if (item != folderConatiner[0]) bounceAnimation(item)
+})
+```
+
+### 踩坑记录
+
+**FixByAI**: 修复 `var chd` 闭包陷阱——for 循环中用 `var` 绑定事件，所有回调共享同一个变量，始终指向最后一个元素；改用事件委托解决
+
+**FixByAI**: 修复 `animejs.linear(0, 0.0874, ...)` 传入 100+ 参数导致 easing 异常——animejs 内部 `getFunctionValue` 将 ease 函数作为回调执行时传入了 HTMLElement，导致 NaN，且 CSS `linear()` 函数色阶过多可能被浏览器拒绝；改用内置 `'outElastic'` 缓动字符串
+
+### 技术要点
+
+1. **事件委托 > 逐个绑定**：在父容器上监听 `mouseover`，通过 `e.target` 获取实际悬停元素，避免为每个子元素绑定事件
+2. **animejs v4 使用 WAAPI 底层**：`animejs.animate()` 内部调用 `Element.animate()`，通过 CSS 自定义属性 `--scaleX` / `--scaleY` 实现单个 transform 分量动画
+3. **ease 参数限制**：WAAPI 模式下，自定义 easing 函数会被 `easingToLinear` 采样转换为 CSS `linear()` 字符串，参数过多可能失败；优先使用内置缓动名称
