@@ -21,6 +21,12 @@
 }
 
 /* 文字总样式 */
+p,span 
+/* :not(.item-name,.item-detail) */
+{
+  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
+  text-shadow: 10px 1px 8px rgba(0, 0, 0, 0.34), 0px 1px 2px rgba(0, 0, 0, 0.24);
+}
 
 /* 设置标题 */
 #settings-title-zh {
@@ -30,8 +36,8 @@
   letter-spacing: 4px;
   margin: 0;
   padding: 0;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
-  text-shadow: 10px 1px 8px rgba(0, 0, 0, 0.34), 0px 1px 2px rgba(0, 0, 0, 0.24);
+  
+  
 }
 
 #settings-title-eng {
@@ -43,7 +49,6 @@
   margin: 0;
   padding: 0;
   margin-right: -2px;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 /* 二级标题 */
@@ -54,8 +59,6 @@
   margin-bottom: -2px;
   margin-top: 10px;
   padding: 0;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
-  text-shadow: 10px 1px 8px rgba(0, 0, 0, 0.34), 0px 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .title2-eng {
@@ -66,7 +69,6 @@
   margin: 0;
   padding: 0;
   margin-right: -4px;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 /* 三级标题 */
@@ -77,7 +79,6 @@
   margin-bottom: -2px;
   margin-top: 10px;
   padding: 0;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 .title3-eng {
@@ -88,7 +89,6 @@
   margin: 0;
   padding: 0;
   margin-right: -4px;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 /* 正文 - GenByAI #11 */
@@ -99,7 +99,6 @@
   margin-top:2px;
   margin-bottom: -2px;
   padding: 0;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 .content-eng {
@@ -111,7 +110,6 @@
   padding: 0;
   /* margin-right: -2px; */
   margin-top: -4px;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 /* 辅助文本/提示文本 */
@@ -121,7 +119,6 @@
   line-height: 1.6;
   margin: 4px 0;
   padding: 0;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 .hint-eng {
@@ -132,7 +129,6 @@
   margin: 2px 0;
   padding: 0;
   margin-right: -1px;
-  font-family: "DengXian", "微软雅黑", "Microsoft YaHei", sans-serif;
 }
 
 /* 滚动列表*/

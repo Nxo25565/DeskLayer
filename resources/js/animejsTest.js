@@ -2,7 +2,7 @@
 
 function loadAnimeJS() {
   const animejs = window.anime
-  console.log('hello from anime.js')
+  
   console.log(animejs.animate)
   // animejs.animate(
   //   '.linkbro-container',
@@ -12,6 +12,7 @@ function loadAnimeJS() {
   //   easying: 'easeInOutQuad',
   //   loop: true
   // })
+  console.log('hello from anime.js')
 }
 
 loadAnimeJS()

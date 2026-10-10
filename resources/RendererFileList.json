@@ -33,6 +33,10 @@
         {
             "path": "./styles/pages/Settings/index.css",
             "priority": 1
+        },
+        {
+            "path": "./js/Settings/listItemAnimation.js",
+            "priority":1.1
         }
     ],
     "about": [

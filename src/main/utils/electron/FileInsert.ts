@@ -75,9 +75,9 @@ export async function insertWebFiles(windowName: string, insert: InsertCustomFil
 
 export function getDefaultInsert(): InsertCustomFileOptions[] {
   // 缓存
-  if (defaultInserts) {
-    return defaultInserts
-  }
+  // if (defaultInserts) {
+  //   return defaultInserts
+  // }
 
   // 解析default.json
   defaultInserts = JSON.parse(
@@ -105,10 +105,11 @@ export function getDefaultInsert(): InsertCustomFileOptions[] {
 
 
 export function getWebFileList(windowName: string): InsertCustomFileOptions[] {
-  if (!rendererFileList) {
-    // 缓存
-    rendererFileList = JSON.parse(readFileSync(join(basePath, 'RendererFileList.json'), 'utf-8'))
-  }
+  // 不要缓存
+  // if (!rendererFileList) {
+  //   // 缓存
+  rendererFileList = JSON.parse(readFileSync(join(basePath, 'RendererFileList.json'), 'utf-8'))
+  // }
   console.log('filtered: '+parseInsertOptions(rendererFileList[windowName]).filter(f => f.priority == -1))
   return parseInsertOptions(rendererFileList[windowName]).filter(f => f.priority != -1)
 }

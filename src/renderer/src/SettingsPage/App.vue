@@ -85,7 +85,7 @@ onMounted(async () => {
         <p class="title3-zh">快捷方式</p>
         <p class="title3-eng">Shortcuts</p>
       </div>
-      <DragScroll>
+      <DragScroll class="single-scroll">
         <ListItem
           v-for="(shortcut, index) in shortcuts"
           :key="shortcut.path"
@@ -98,7 +98,7 @@ onMounted(async () => {
         <p class="title3-zh">文件夹</p>
         <p class="title3-eng">Folders</p>
       </div>
-      <DragScroll>
+      <DragScroll class="folders-scroll">
         <ListItem
           v-for="(folder, index) in folders"
           :key="folder"
