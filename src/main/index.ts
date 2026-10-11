@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, globalShortcut } from 'electron'
 // import { join } from 'path'
 import { WindowManager } from './utils/electron/WindowManage'
 import { createAboutWindow } from './Settings/AboutWindow'
@@ -46,4 +46,8 @@ app.whenReady().then(async () => {
   windowManager.addWindow('linkbro', linkBroWindow)
 
   notification.show()
+
+  globalShortcut.register('Alt+X', () => {
+      windowManager.getWindow('settings')?.show()
+  })
 })
