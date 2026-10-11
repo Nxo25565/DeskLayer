@@ -1,7 +1,7 @@
 // import { join,resolve } from 'path'
 import { join } from 'path'
 import { importFolderShortcuts } from '../utils/Path'
-import { BrowserWindow, ipcMain } from 'electron'
+import { BrowserWindow, globalShortcut, ipcMain } from 'electron'
 import { dialog } from 'electron'
 import { processLnkPath } from '../utils/Path'
 import { Shortcut } from '../../shared/Types/Shortcut'
@@ -10,15 +10,17 @@ import { Shortcut } from '../../shared/Types/Shortcut'
 
 
 var isOpenedFileDialog = false
-
+var isSettingsWindowShown = false;
+var hideTimer;
 
 
 export function createSettingsWindow(): BrowserWindow {
+
   const windowPreference = {
     width: 800,
     height: 900,
     resizable: true,
-    // frame: false,
+    frame: false,
     transparent: true,
     alwaysOnTop: false,
     webPreferences: {
@@ -36,8 +38,8 @@ export function createSettingsWindow(): BrowserWindow {
 
   const pageFile = join(__dirname, '../renderer/SettingsPage.html')
 
-  const aboutWindow = new BrowserWindow(windowPreference)
-  aboutWindow.loadFile(pageFile)
+  const settingsWindow = new BrowserWindow(windowPreference)
+  settingsWindow.loadFile(pageFile)
 
   // Handles
   ipcMain.handle('setting:open-import-single-dialog', () => {
@@ -47,7 +49,33 @@ export function createSettingsWindow(): BrowserWindow {
     return openImportFolderDialog()
   })
 
-  return aboutWindow
+
+    function hideWindow(){
+      isSettingsWindowShown = false
+      settingsWindow.webContents.send('animation: settings-window-hide')
+      hideTimer?.close()
+      hideTimer = setTimeout(() => {
+        if (!isSettingsWindowShown) {
+          settingsWindow.hide()
+        }
+      }, 800)
+    }
+    
+  
+    // Sth for sys
+    globalShortcut.register('Alt+X', () => {
+      
+      if (!isSettingsWindowShown) {
+        // 提前通知动画开始
+        settingsWindow.webContents.send('animation: settings-window-show')
+        settingsWindow.show()
+        isSettingsWindowShown = true;
+      } else {
+        hideWindow()
+      }
+    })
+
+  return settingsWindow
 }
 
 async function openImportSingleDialog() {
@@ -94,7 +122,5 @@ async function openImportFolderDialog(): Promise<{
     folderPath: result.filePaths[0],
     failed: false
   }
-
-
 
 }
