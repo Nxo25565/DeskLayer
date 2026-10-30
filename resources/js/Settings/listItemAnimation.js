@@ -46,32 +46,58 @@ folderConatiner[0].addEventListener('mouseover', (e) => {
 })
 
 settings.onSettingsHideAnimation(() => {
-    console.log('awa')
+    animejs.utils.remove()
+    animejs.animate('*',{
+        opacity:[1,0],
+        duration:500,
+        easing:'linear',
+        delay:animejs.stagger(1)
+    })
+    animejs.animate('*',{
+        scaleX: [1,0.9],
+        scaleY: [1,0.9],
+        duration:800,
+        ease: 'outElastic',
+        delay:animejs.stagger(2)
+    })
 })
 
 // GenByAI #14: 设置窗口显示时的入场动画
 settings.onSettingsShowAnimation(() => {
-    let t = 0
-    for (let element of singleContainer[0].children) {
-        animejs.animate(element, {
-            scaleX: [0.9, 1],
-            scaleY: [0.9, 1],
-            duration: 500,
-            ease: 'outElastic',
-            delay:t
-        })
-        t += 50
-    }
-    t = 0
-    for (let element of folderConatiner[0].children) {
+    animejs.utils.remove()
+    animejs.animate('*',{
+        opacity:[0,1],
+        duration:500,
+        easing:'linear',
+        delay:animejs.stagger(1)
+    })
+    animejs.animate('*',{
+        scaleX: [0.9, 1],
+        scaleY: [0.9, 1],
+        duration:800,
+        ease: 'outElastic',
+        delay:animejs.stagger(2)
+    })
+    // for (let element of singleContainer[0].children) {
+    //     animejs.animate(element, {
+    //         scaleX: [0.9, 1],
+    //         scaleY: [0.9, 1],
+    //         duration: 500,
+    //         ease: 'outElastic',
+    //         delay:t
+    //     })
+    //     t += 50
+    // }
+    // t = 0
+    // for (let element of folderConatiner[0].children) {
         
-        animejs.animate(element, {
-            scaleX: [0.9, 1],
-            scaleY: [0.9, 1],
-            duration: 300,
-            ease: 'outElastic',
-            delay:t
-        })
-        t += 50
-    }
+    //     animejs.animate(element, {
+    //         scaleX: [0.9, 1],
+    //         scaleY: [0.9, 1],
+    //         duration: 300,
+    //         ease: 'outElastic',
+    //         delay:t
+    //     })
+    //     t += 50
+    // }
 })
