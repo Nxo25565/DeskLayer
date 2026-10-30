@@ -3,14 +3,16 @@ console.log("hello from listItemAnimation.js")
 const singleContainer = document.getElementsByClassName('single-scroll')
 const folderConatiner = document.getElementsByClassName('folders-scroll')
 
+const animejs_w = window.anime.waapi
 const animejs = window.anime
+
 console.log(singleContainer[0].children)
 
 let elementPlayed
 
 // GenByAI #13: 列表项悬停弹跳动画，使用 animejs WAAPI 实现
 function bounceAnimation(element) {
-    animejs.animate(element, {
+    animejs_w.animate(element, {
         scaleX: [0.9, 1],
         scaleY: [0.9, 1],
         duration: 500,
@@ -47,13 +49,13 @@ folderConatiner[0].addEventListener('mouseover', (e) => {
 
 settings.onSettingsHideAnimation(() => {
     animejs.utils.remove()
-    animejs.animate('*',{
+    animejs_w.animate('*',{
         opacity:[1,0],
         duration:500,
         easing:'linear',
         delay:animejs.stagger(1)
     })
-    animejs.animate('*',{
+    animejs_w.animate('*',{
         scaleX: [1,0.9],
         scaleY: [1,0.9],
         duration:800,
@@ -65,13 +67,13 @@ settings.onSettingsHideAnimation(() => {
 // GenByAI #14: 设置窗口显示时的入场动画
 settings.onSettingsShowAnimation(() => {
     animejs.utils.remove()
-    animejs.animate('*',{
+    animejs_w.animate('*',{
         opacity:[0,1],
         duration:500,
         easing:'linear',
         delay:animejs.stagger(1)
     })
-    animejs.animate('*',{
+    animejs_w.animate('*',{
         scaleX: [0.9, 1],
         scaleY: [0.9, 1],
         duration:800,
