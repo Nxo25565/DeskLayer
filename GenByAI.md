@@ -732,3 +732,56 @@ folderConatiner[0].addEventListener('mouseover', (e) => {
 1. **事件委托 > 逐个绑定**：在父容器上监听 `mouseover`，通过 `e.target` 获取实际悬停元素，避免为每个子元素绑定事件
 2. **animejs v4 使用 WAAPI 底层**：`animejs.animate()` 内部调用 `Element.animate()`，通过 CSS 自定义属性 `--scaleX` / `--scaleY` 实现单个 transform 分量动画
 3. **ease 参数限制**：WAAPI 模式下，自定义 easing 函数会被 `easingToLinear` 采样转换为 CSS `linear()` 字符串，参数过多可能失败；优先使用内置缓动名称
+
+---
+
+## #14 Settings页面 - 窗口显示入场动画监听
+
+### 需求描述
+补充 `onSettingsShowAnimation` 回调，监听主进程 `SettingsWindow` show 时发送的 `animation: settings-window-show` 事件，与已有的 `onSettingsHideAnimation` 形成完整的显示/隐藏动画对。
+
+### 修改内容
+
+**GenByAI**: 预加载脚本暴露 `onSettingsShowAnimation`，监听显示动画事件
+
+**文件位置**: [index.ts:49-50](src/preload/Settings/index.ts#L49-L50)
+
+```typescript
+onSettingsShowAnimation: (callback: () => void) => ipcRenderer.on('animation: settings-window-show', callback)
+```
+
+**GenByAI**: Window 类型声明新增 `onSettingsShowAnimation`
+
+**文件位置**:
+- [global.d.ts:17](resources/js/Settings/global.d.ts#L17)
+- [global.d.ts:17](resources/js/global.d.ts#L17)
+
+```typescript
+onSettingsShowAnimation(callback: () => void): void
+```
+
+**GenByAI**: 渲染进程注册显示动画回调
+
+**文件位置**: [listItemAnimation.js:52-54](resources/js/Settings/listItemAnimation.js#L52-L54)
+
+```javascript
+settings.onSettingsShowAnimation(() => {
+    console.log('settings show animation triggered')
+})
+```
+
+### 事件流
+
+```
+主进程 (Alt+X 快捷键)
+  └─ settingsWindow.show() 之前
+       └─ webContents.send('animation: settings-window-show')
+            └─ preload: ipcRenderer.on → 触发 callback
+                 └─ 渲染进程: 执行入场动画
+```
+
+### 技术要点
+
+1. **发送时机**：主进程在 `show()` 之前发送事件，确保渲染进程在窗口显示前准备好动画
+2. **对称设计**：与 `onSettingsHideAnimation` 形成完整的生命周期动画对（show/hide）
+3. **isolated world**：使用 `contextBridge.exposeInIsolatedWorld(1024, ...)` 确保安全隔离

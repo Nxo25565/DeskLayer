@@ -44,3 +44,34 @@ folderConatiner[0].addEventListener('mouseover', (e) => {
         elementPlayed = item
     }
 })
+
+settings.onSettingsHideAnimation(() => {
+    console.log('awa')
+})
+
+// GenByAI #14: 设置窗口显示时的入场动画
+settings.onSettingsShowAnimation(() => {
+    let t = 0
+    for (let element of singleContainer[0].children) {
+        animejs.animate(element, {
+            scaleX: [0.9, 1],
+            scaleY: [0.9, 1],
+            duration: 500,
+            ease: 'outElastic',
+            delay:t
+        })
+        t += 50
+    }
+    t = 0
+    for (let element of folderConatiner[0].children) {
+        
+        animejs.animate(element, {
+            scaleX: [0.9, 1],
+            scaleY: [0.9, 1],
+            duration: 300,
+            ease: 'outElastic',
+            delay:t
+        })
+        t += 50
+    }
+})

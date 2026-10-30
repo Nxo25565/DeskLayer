@@ -43,3 +43,10 @@ contextBridge.exposeInMainWorld('settings', {
   // 获取已导入的文件夹列表
   getFolders: (): Promise<string[]> => ipcRenderer.invoke('settings:get-folders')
 })
+
+
+contextBridge.exposeInIsolatedWorld(1024,'settings',{
+  onSettingsHideAnimation: (callback: () => void) => ipcRenderer.on('animation: settings-window-hide',callback),
+  // GenByAI #14: 监听设置窗口显示动画事件
+  onSettingsShowAnimation: (callback: () => void) => ipcRenderer.on('animation: settings-window-show',callback)
+})

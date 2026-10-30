@@ -15,5 +15,8 @@ declare interface Window {
   settings: {
     getGeneral(): Promise<any>,
     getGeneralOption(option: string): Promise<any>,
+    onSettingsHideAnimation(callback: () => void): void,
+    // GenByAI #14: 设置窗口显示动画回调类型声明
+    onSettingsShowAnimation(callback: () => void): void
   }
 }
